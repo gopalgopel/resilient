@@ -60,7 +60,12 @@
   <script src="aset/leafletdraw/draw/handler/Draw.Polyline.js"></script>
   <script src="aset/leafletdraw/draw/handler/Draw.Circle.js"></script>
   <script src="aset/leafletdraw/draw/handler/Draw.Marker.js"></script>
-  <script src="aset/leafletdraw/draw/handler/Draw.Marker2.js"></script>
+  <script src="aset/leafletdraw/draw/handler/Draw.MarkerMerah.js"></script>
+  <script src="aset/leafletdraw/draw/handler/Draw.MarkerBulat.js"></script>
+  <script src="aset/leafletdraw/draw/handler/Draw.MarkerBiru.js"></script>
+  <script src="aset/leafletdraw/draw/handler/Draw.MarkerAbu.js"></script>
+  <script src="aset/leafletdraw/draw/handler/Draw.MarkerHijau.js"></script>
+  <script src="aset/leafletdraw/draw/handler/Draw.MarkerUngu.js"></script>
   <script src="aset/leafletdraw/draw/handler/Draw.Polygon.js"></script>
   <script src="aset/leafletdraw/draw/handler/Draw.Rectangle.js"></script>
   <script src="aset/leafletdraw/edit/EditToolbar.js"></script>
@@ -98,7 +103,7 @@
 <div id="map"></div>
 
 <div id="logoresilient" >
-  <img src="aset/img/logokcil.png">
+  <img src="aset/img/logosk.png">
 </div>
 
 <script>
@@ -164,48 +169,95 @@ var aiscon = L.icon({
         draw: {
             polygon: {
                 allowIntersection: false,
-                shapeOptions:{color: "#029A10",showMeasurements: true},
+                shapeOptions:{showMeasurements: true},
                 showArea: true
             },
+            // polygonabu: {
+            //     allowIntersection: false,
+            //     shapeOptions:{color: "#808080",showMeasurements: true},
+            //     showArea: true
+            // },
+            // polygonmerah: {
+            //     allowIntersection: false,
+            //     shapeOptions:{color: "#ff0000",showMeasurements: true},
+            //     showArea: true
+            // },
+            // polygonbiru: {
+            //     allowIntersection: false,
+            //     shapeOptions:{color: "#0066ff",showMeasurements: true},
+            //     showArea: true
+            // },
+            // polygonkuning: {
+            //     allowIntersection: false,
+            //     shapeOptions:{color: "#ffff00",showMeasurements: true},
+            //     showArea: true
+            // },
+            // polygonhijau: {
+            //     allowIntersection: false,
+            //     shapeOptions:{color: "#00ff00",showMeasurements: true},
+            //     showArea: true
+            // },
+            // polygonungu: {
+            //     allowIntersection: false,
+            //     shapeOptions:{color: "#cc00cc",showMeasurements: true},
+            //     showArea: true
+            // },
             polyline: {
-                // metric: true,
                 shapeOptions:{
-                  color: "#DA4D01", //DA4D01  
-                  weight: 7, 
-                  // opacity: 1, 
-                  // smoothFactor: 1, 
-                  // dashArray: '5, 8',
                   showMeasurements: true
                 }
             },
             rectangle: {
                 showRadius: true,
-                shapeOptions:{color: "#DAA901",showMeasurements: true}
+                shapeOptions:{showMeasurements: true}
             },
-            marker: {
-                icon: new L.icon({
-                          iconUrl: 'aset/img/iconAIS.png',
-                          iconSize: [10, 10],
-                          iconAnchor: [5, 5],
-                          popupAnchor: [5,5]
-                      })
-            },
-            marker2: {
-                icon: new L.icon({
-                          iconUrl: 'aset/img/iconRADAR.png',
-                          iconSize: [10, 10],
-                          iconAnchor: [5, 5],
-                          popupAnchor: [5,5]
-                      })
-            },
+            // markermerah: {
+            //     icon: new L.icon({
+            //               iconUrl: 'aset/img/iconmerah.png',
+            //               iconSize: [10, 10],
+            //               iconAnchor: [5, 5],
+            //               popupAnchor: [5,5]
+            //           })
+            // },
+            // markerhijau: {
+            //     icon: new L.icon({
+            //               iconUrl: 'aset/img/iconhijau.png',
+            //               iconSize: [10, 10],
+            //               iconAnchor: [5, 5],
+            //               popupAnchor: [5,5]
+            //           })
+            // },
+            // markerbiru: {
+            //     icon: new L.icon({
+            //               iconUrl: 'aset/img/iconbiru.png',
+            //               iconSize: [10, 10],
+            //               iconAnchor: [5, 5],
+            //               popupAnchor: [5,5]
+            //           })
+            // },
+            // markerungu: {
+            //     icon: new L.icon({
+            //               iconUrl: 'aset/img/iconungu.png',
+            //               iconSize: [10, 10],
+            //               iconAnchor: [5, 5],
+            //               popupAnchor: [5,5]
+            //           })
+            // },
+            // markerabu: {
+            //     icon: new L.icon({
+            //               iconUrl: 'aset/img/iconabu.png',
+            //               iconSize: [10, 10],
+            //               iconAnchor: [5, 5],
+            //               popupAnchor: [5,5]
+            //           })
+            // },
             circle: {
-                shapeOptions:{color: "#DA0101",showMeasurements: true}
+                shapeOptions:{showMeasurements: true}
             }
         }
     });
     ldraw.addTo(map);
-    // ldraw.setDrawingOptions({showMeasurements: true});
- 
+    
     map.on(L.Draw.Event.CREATED, function (event) {
         var layer = event.layer;
         // drawnItems.bindPopup('hahahaha');
@@ -690,7 +742,7 @@ var attrib = new L.Control.Attribution;
 map.addControl(attrib); 
 attrib.setPrefix('Koordinat : ');
 map.on('mousemove', function(e) {
-  attrib.setPrefix('Koordinat : '+e.latlng.lat+", "+e.latlng.lng+'. Zoom:'+map.getZoom());
+  attrib.setPrefix('Koordinat : '+e.latlng.lat+", "+e.latlng.lng+'. Zoom:'+map.getZoom()+'. Created by Gopal, 2017');
 });
 
 var EDITSTAT, DRAWSTAT;

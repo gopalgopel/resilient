@@ -11,7 +11,7 @@ L.Draw.Circle = L.Draw.SimpleShape.extend({
 	options: {
 		shapeOptions: {
 			stroke: true,
-			color: '#3388ff',
+			color: '#DA4D01',
 			weight: 4,
 			opacity: 0.5,
 			fill: true,
@@ -33,6 +33,36 @@ L.Draw.Circle = L.Draw.SimpleShape.extend({
 		this._initialLabelText = L.drawLocal.draw.handlers.circle.tooltip.start;
 
 		L.Draw.SimpleShape.prototype.initialize.call(this, map, options);
+	},
+
+	// GOPAL 2017 - chose color 
+	// ngubah warna garis, via toolbar action. bukan draw control lg. biar g makan tempat
+	chosecolorwhite: function () {
+		this.options.shapeOptions.color = '#ffffff';
+	},
+	chosecolorblack: function () {
+		this.options.shapeOptions.color = '#000000';
+	},
+	chosecoloryellow: function () {
+		this.options.shapeOptions.color = '#ffff00';
+	},
+	chosecolordefault: function () {
+		this.options.shapeOptions.color = '#DA4D01';
+	},
+	chosecolorblue: function () {
+		this.options.shapeOptions.color = '#0066ff';
+	},
+	chosecolorgreen: function () {
+		this.options.shapeOptions.color = '#029A10';
+	},
+	chosecolorpurple: function () {
+		this.options.shapeOptions.color = '#cc00cc';
+	},
+	chosecolorgray: function () {
+		this.options.shapeOptions.color = '#808080';
+	},
+	chosecolorred: function () {
+		this.options.shapeOptions.color = '#ff0000';
 	},
 
 	_drawShape: function (latlng) {

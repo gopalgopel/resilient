@@ -108,7 +108,7 @@ L.Toolbar = L.Class.extend({
 
 		// Create empty actions part of the toolbar
 		this._actionsContainer = L.DomUtil.create('ul', 'leaflet-draw-actions');
-
+		// console.log('hahaha', this);
 		// Add draw and cancel containers to the control container
 		container.appendChild(this._toolbarContainer);
 		container.appendChild(this._actionsContainer);
@@ -240,6 +240,7 @@ L.Toolbar = L.Class.extend({
 	},
 
 	_createActions: function (handler) {
+		// console.log(this);
 		var container = this._actionsContainer,
 			buttons = this.getActions(handler),
 			l = buttons.length,

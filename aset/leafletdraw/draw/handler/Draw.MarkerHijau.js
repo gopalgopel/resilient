@@ -3,71 +3,24 @@
  * @aka Draw.Marker
  * @inherits L.Draw.Feature
  */
-L.Draw.Marker = L.Draw.Feature.extend({
+L.Draw.MarkerHijau = L.Draw.Feature.extend({
 	statics: {
-		TYPE: 'marker'
+		TYPE: 'markerhijau'
 	},
 
 	options: {
-		icon: new L.icon({
-	          iconUrl: 'aset/img/markerdefault.png',
-	          iconSize: [25, 41],
-	          iconAnchor: [12, 41],
-	          popupAnchor: [1, -34],
-	          shadowUrl : 'aset/img/marker-shadow.png',
-	          shadowSize: [41,41]
-	    }),
-	    repeatMode: true,
+		icon: new L.Icon.Default(),
+		repeatMode: false,
 		zIndexOffset: 2000 // This should be > than the highest z-index any markers
 	},
 
 	// @method initialize(): void
 	initialize: function (map, options) {
 		// Save the type so super can fire, need to do this as cannot do this.TYPE :(
-		this.type = L.Draw.Marker.TYPE;
+		this.type = L.Draw.MarkerHijau.TYPE;
 
 		L.Draw.Feature.prototype.initialize.call(this, map, options);
 	},
-
-	// GOPAL 2017 - chose color 
-	// ngubah warna garis, via toolbar action. bukan draw control lg. biar g makan tempat
-	chosecolorwhite: function () {
-		this.options.__proto__.icon.options.iconUrl = "aset/img/markerputih.png";
-		this._marker.removeFrom(map).addTo(map);
-	},
-	chosecolorblack: function () {
-		this.options.__proto__.icon.options.iconUrl = "aset/img/markerhitam.png";
-		this._marker.removeFrom(map).addTo(map);
-	},
-	chosecoloryellow: function () {
-		this.options.__proto__.icon.options.iconUrl = "aset/img/markerkuning.png";
-		this._marker.removeFrom(map).addTo(map);
-	},
-	chosecolordefault: function () {
-		this.options.__proto__.icon.options.iconUrl = "aset/img/markerdefault.png";
-		this._marker.removeFrom(map).addTo(map);
-	},
-	chosecolorblue: function () {
-		this.options.__proto__.icon.options.iconUrl = "aset/img/markerbiru.png";
-		this._marker.removeFrom(map).addTo(map);
-	},
-	chosecolorgreen: function () {
-		this.options.__proto__.icon.options.iconUrl = "aset/img/markerhijau.png";
-		this._marker.removeFrom(map).addTo(map);
-	},
-	chosecolorpurple: function () {
-		this.options.__proto__.icon.options.iconUrl = "aset/img/markerungu.png";
-		this._marker.removeFrom(map).addTo(map);
-	},
-	chosecolorgray: function () {
-		this.options.__proto__.icon.options.iconUrl = "aset/img/markerabu.png";
-		this._marker.removeFrom(map).addTo(map);
-	},
-	chosecolorred: function () {
-		this.options.__proto__.icon.options.iconUrl = "aset/img/markermerah.png";
-		this._marker.removeFrom(map).addTo(map);
-	},
-
 
 	// @method addHooks(): void
 	// Add listener hooks to this handler.
@@ -75,7 +28,7 @@ L.Draw.Marker = L.Draw.Feature.extend({
 		L.Draw.Feature.prototype.addHooks.call(this);
 
 		if (this._map) {
-			this._tooltip.updateContent({ text: L.drawLocal.draw.handlers.marker.tooltip.start });
+			this._tooltip.updateContent({ text: L.drawLocal.draw.handlers.markerhijau.tooltip.start });
 
 			// Same mouseMarker as in Draw.Polyline
 			if (!this._mouseMarker) {

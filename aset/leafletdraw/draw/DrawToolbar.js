@@ -14,7 +14,12 @@ L.DrawToolbar = L.Toolbar.extend({
 		rectangle: {},
 		circle: {},
 		marker: {},
-		marker2: {}
+		markerbulat: {}
+		// markerabu: {},
+		// markermerah: {},
+		// markerhijau: {},
+		// markerbiru: {},
+		// markerungu: {}
 	},
 
 	// @method initialize(): void
@@ -62,10 +67,35 @@ L.DrawToolbar = L.Toolbar.extend({
 				title: L.drawLocal.draw.toolbar.buttons.marker
 			},
 			{
-				enabled: this.options.marker2,
-				handler: new L.Draw.Marker2(map, this.options.marker2),
-				title: L.drawLocal.draw.toolbar.buttons.marker2
-			}
+				enabled: this.options.markerbulat,
+				handler: new L.Draw.MarkerBulat(map, this.options.markerbulat),
+				title: L.drawLocal.draw.toolbar.buttons.markerbulat
+			},
+			// {
+			// 	enabled: this.options.markerabu,
+			// 	handler: new L.Draw.MarkerAbu(map, this.options.markerabu),
+			// 	title: L.drawLocal.draw.toolbar.buttons.markerabu
+			// },
+			// {
+			// 	enabled: this.options.markermerah,
+			// 	handler: new L.Draw.MarkerMerah(map, this.options.markermerah),
+			// 	title: L.drawLocal.draw.toolbar.buttons.markermerah
+			// },
+			// {
+			// 	enabled: this.options.markerhijau,
+			// 	handler: new L.Draw.MarkerHijau(map, this.options.markerhijau),
+			// 	title: L.drawLocal.draw.toolbar.buttons.markerhijau
+			// },
+			// {
+			// 	enabled: this.options.markerbiru,
+			// 	handler: new L.Draw.MarkerBiru(map, this.options.markerbiru),
+			// 	title: L.drawLocal.draw.toolbar.buttons.markerbiru
+			// },
+			// {
+			// 	enabled: this.options.markerungu,
+			// 	handler: new L.Draw.MarkerUngu(map, this.options.markerungu),
+			// 	title: L.drawLocal.draw.toolbar.buttons.markerungu
+			// }
 		];
 	},
 
@@ -73,6 +103,70 @@ L.DrawToolbar = L.Toolbar.extend({
 	// Get action information
 	getActions: function (handler) {
 		return [
+			{
+				enabled: handler.chosecolordefault,
+				title: L.drawLocal.draw.toolbar.chosecolor.title,
+				text: L.drawLocal.draw.toolbar.chosecolor.adefault,
+				callback: handler.chosecolordefault,
+				context: handler
+			},
+			{
+				enabled: handler.chosecolorwhite,
+				title: L.drawLocal.draw.toolbar.chosecolor.title,
+				text: L.drawLocal.draw.toolbar.chosecolor.awhite,
+				callback: handler.chosecolorwhite,
+				context: handler
+			},
+			{
+				enabled: handler.chosecolorgray,
+				title: L.drawLocal.draw.toolbar.chosecolor.title,
+				text: L.drawLocal.draw.toolbar.chosecolor.agray,
+				callback: handler.chosecolorgray,
+				context: handler
+			},
+			{
+				enabled: handler.chosecolorblack,
+				title: L.drawLocal.draw.toolbar.chosecolor.title,
+				text: L.drawLocal.draw.toolbar.chosecolor.ablack,
+				callback: handler.chosecolorblack,
+				context: handler
+			},
+			{
+				enabled: handler.chosecolorred,
+				title: L.drawLocal.draw.toolbar.chosecolor.title,
+				text: L.drawLocal.draw.toolbar.chosecolor.ared,
+				callback: handler.chosecolorred,
+				context: handler
+			},
+			{
+				enabled: handler.chosecolorpurple,
+				title: L.drawLocal.draw.toolbar.chosecolor.title,
+				text: L.drawLocal.draw.toolbar.chosecolor.apurple,
+				callback: handler.chosecolorpurple,
+				context: handler
+			},
+			{
+				enabled: handler.chosecolorgreen,
+				title: L.drawLocal.draw.toolbar.chosecolor.title,
+				text: L.drawLocal.draw.toolbar.chosecolor.agreen,
+				callback: handler.chosecolorgreen,
+				context: handler
+			},
+			{
+				enabled: handler.chosecolorblue,
+				title: L.drawLocal.draw.toolbar.chosecolor.title,
+				text: L.drawLocal.draw.toolbar.chosecolor.ablue,
+				callback: handler.chosecolorblue,
+				context: handler
+			},
+			{
+				enabled: handler.chosecoloryellow,
+				title: L.drawLocal.draw.toolbar.chosecolor.title,
+				text: L.drawLocal.draw.toolbar.chosecolor.ayellow,
+				callback: handler.chosecoloryellow,
+				context: handler
+			},
+			//beres chose color
 			{
 				enabled: handler.completeShape,
 				title: L.drawLocal.draw.toolbar.finish.title,

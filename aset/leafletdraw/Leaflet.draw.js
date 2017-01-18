@@ -77,66 +77,108 @@ L.drawLocal = {
 			// #TODO: this should be reorganized where actions are nested in actions
 			// ex: actions.undo  or actions.cancel
 			actions: {
-				title: 'Cancel drawing',
-				text: 'Cancel'
+				title: 'Batal menggambar',
+				text: '<div style="padding-left: 10px; padding-right: 10px; height: 27px;">Batal</div>',
+			},
+			chosecolor: {
+				title	: 'pilih warna',
+				adefault: '<div style="background-color:#DA4D01; padding-left: 10px; padding-right: 10px; height: 27px;">&nbsp;</div>',
+				ablack	: '<div style="background-color:#000000; padding-left: 10px; padding-right: 10px; height: 27px;">&nbsp;</div>',
+				awhite	: '<div style="color:#000000; background-color:#ffffff; padding-left: 10px; padding-right: 10px; height: 27px;">&nbsp;</div>',
+				ared 	: '<div style="background-color:#ff0000; padding-left: 10px; padding-right: 10px; height: 27px;">&nbsp;</div>',
+				ayellow	: '<div style="color:#000000; background-color:#ffff00; padding-left: 10px; padding-right: 10px; height: 27px;">&nbsp;</div>',
+				ablue	: '<div style="background-color:#0066ff; padding-left: 10px; padding-right: 10px; height: 27px;">&nbsp;</div>',
+				apurple	: '<div style="background-color:#cc00cc; padding-left: 10px; padding-right: 10px; height: 27px;">&nbsp;</div>',
+				agray	: '<div style="background-color:#808080; padding-left: 10px; padding-right: 10px; height: 27px;">&nbsp;</div>',
+				agreen	: '<div style="background-color:#029A10; padding-left: 10px; padding-right: 10px; height: 27px;">&nbsp;</div>'
 			},
 			finish: {
-				title: 'Finish drawing',
-				text: 'Finish'
+				title: 'Selesai gambar',
+				text: '<div style="padding-left: 10px; padding-right: 10px; height: 27px;">Selesai</div>',
 			},
 			undo: {
-				title: 'Delete last point drawn',
-				text: 'Delete last point'
+				title: 'Hapus point terakhir',
+				text: '<div style="padding-left: 10px; padding-right: 10px; height: 27px;">Hapus point terakhir</div>',
 			},
 			buttons: {
-				polyline: 'Draw a polyline',
-				polygon: 'Draw a polygon',
-				rectangle: 'Draw a rectangle',
-				circle: 'Draw a circle',
-				marker: 'Draw a marker',
-				marker2: 'menggambar marker2'
+				polyline: 'Gambar polyline',
+				polygon: 'Gambar polygon',
+				rectangle: 'Gambar kotak',
+				circle: 'Gambar lingkaran',
+				marker: 'Taruh marker point',
+				markerbulat: 'Taruh marker bulat',
+				markerabu: 'Taruh marker abu',
+				markermerah: 'Taruh marker merah',
+				markerhijau: 'Taruh marker hijau',
+				markerungu: 'Taruh marker ungu',
+				markerbiru: 'Taruh marker biru'
 			}
 		},
 		handlers: {
 			circle: {
 				tooltip: {
-					start: 'Click and drag to draw circle.'
+					start: 'Klik lalu drag untuk menggambar lingkaran'
 				},
 				radius: 'Radius'
 			},
 			marker: {
 				tooltip: {
-					start: 'Click map to place marker.'
+					start: 'Taruh marker point di map'
 				}
 			},
-			marker2: {
+			markerbulat: {
 				tooltip: {
-					start: 'taro si marker2.'
+					start: 'Taruh marker bulat di map'
+				}
+			},
+			markerabu: {
+				tooltip: {
+					start: 'Taruh di map'
+				}
+			},
+			markermerah: {
+				tooltip: {
+					start: 'Taruh di map'
+				}
+			},
+			markerhijau: {
+				tooltip: {
+					start: 'Taruh di map'
+				}
+			},
+			markerungu: {
+				tooltip: {
+					start: 'Taruh di map'
+				}
+			},
+			markerbiru: {
+				tooltip: {
+					start: 'Taruh di map'
 				}
 			},
 			polygon: {
 				tooltip: {
-					start: 'Click to start drawing shape.',
-					cont: 'Click to continue drawing shape.',
-					end: 'Click first point to close this shape.'
+					start: 'Klik untuk memulai menggambar bentuk.',
+					cont: 'Klik lagi untuk melanjutkan',
+					end: 'Klik point pertama untuk menutup'
 				}
 			},
 			polyline: {
-				error: '<strong>Error:</strong> shape edges cannot cross!',
+				error: '<strong>Error:</strong> bentuk tidak bisa menyilang!',
 				tooltip: {
-					start: 'Click to start drawing line.',
-					cont: 'Click to continue drawing line.',
-					end: 'Click last point to finish line.'
+					start: 'Klik untuk memulai menggambar garis',
+					cont: 'Klik lagi untuk melanjutkan',
+					end: 'Klik point terakhir untuk menutup'
 				}
 			},
 			rectangle: {
 				tooltip: {
-					start: 'Click and drag to draw rectangle.'
+					start: 'Klik lalu drag untuk menggambar kotak'
 				}
 			},
 			simpleshape: {
 				tooltip: {
-					end: 'Release mouse to finish drawing.'
+					end: 'Lepas mouse untuk selesai'
 				}
 			}
 		}
@@ -145,31 +187,31 @@ L.drawLocal = {
 		toolbar: {
 			actions: {
 				save: {
-					title: 'Save changes.',
-					text: 'Save'
+					title: 'Simpan perubahan',
+					text: '<div style="padding-left: 10px; padding-right: 10px; height: 27px;">Simpan</div>',
 				},
 				cancel: {
-					title: 'Cancel editing, discards all changes.',
-					text: 'Cancel'
+					title: 'Batal, batalkan semua perubahan',
+					text: '<div style="padding-left: 10px; padding-right: 10px; height: 27px;">Batal</div>',
 				}
 			},
 			buttons: {
-				edit: 'Edit layers.',
-				editDisabled: 'No layers to edit.',
-				remove: 'Delete layers.',
-				removeDisabled: 'No layers to delete.'
+				edit: 'Edit layers',
+				editDisabled: 'Tidak ada layer untuk diedit',
+				remove: 'Hapus layers',
+				removeDisabled: 'Tidak ada layer untuk dihapus'
 			}
 		},
 		handlers: {
 			edit: {
 				tooltip: {
-					text: 'Drag handles, or marker to edit feature.',
-					subtext: 'Click cancel to undo changes.'
+					text: 'Drag point atau marker untuk edit',
+					subtext: 'Klik batal untuk batalkan edit'
 				}
 			},
 			remove: {
 				tooltip: {
-					text: 'Click on a feature to remove'
+					text: 'Klik gambar yang ingin dihapus'
 				}
 			}
 		}

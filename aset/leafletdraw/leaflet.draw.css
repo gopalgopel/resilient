@@ -108,11 +108,14 @@
     background-color: #919187;
     border-left: 1px solid #AAA;
     color: #FFF;
-    font: 11px/19px "Helvetica Neue", Arial, Helvetica, sans-serif;
+    /*font: 11px/19px "Helvetica Neue", Arial, Helvetica, sans-serif;*/
+    font: 13px/19px "Helvetica Neue", Arial, Helvetica, sans-serif;
     line-height: 28px;
     text-decoration: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    /*padding-left: 10px;
+    padding-right: 10px;*/
+    padding-left: 0px;
+    padding-right: 0px;
     height: 28px;
 }
 
@@ -148,15 +151,15 @@
 /* ================================================================== */
 /* Draw toolbar
 /* ================================================================== */
-
+/*polyline*/
 .leaflet-draw-toolbar .leaflet-draw-draw-polyline {
     background-position: -2px -2px;
 }
-
 .leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-polyline {
     background-position: 0 -1px;
 }
 
+/*polygon*/
 .leaflet-draw-toolbar .leaflet-draw-draw-polygon {
     background-position: -31px -2px;
 }
@@ -181,25 +184,71 @@
     background-position: -90px -1px;
 }
 
+/*marker*/
 .leaflet-draw-toolbar .leaflet-draw-draw-marker {
-    /*background-position: -122px -2px;*/
-    background-color: #ffff00;
+    background-position: -122px -2px;
 }
-
 .leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-marker {
-    /*background-position: -120px -1px;*/
+    background-position: -120px -1px;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-markerbulat {
+    background-image: url('images/icontransp.png');
+    /*background-image: linear-gradient(transparent, transparent), url('images/iconputih.png');*/
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-clip: padding-box;
+}
+/*.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-markerbulat {
+    background-position: -120px -1px;
     background-color: #ffff00;
-}
+}*/
 
-.leaflet-draw-toolbar .leaflet-draw-draw-marker2 {
-    /*background-position: -122px -2px;*/
+.leaflet-draw-toolbar .leaflet-draw-draw-markermerah {
+    background-position: -122px -2px;
+    background-color: #ff0000;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-markermerah {
+    background-position: -120px -1px;
     background-color: #ff0000;
 }
 
-.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-marker2 {
-    /*background-position: -120px -1px;*/
-    background-color: #ff0000;
+.leaflet-draw-toolbar .leaflet-draw-draw-markerabu {
+    background-position: -122px -2px;
+    background-color: #808080;
 }
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-markerabu {
+    background-position: -120px -1px;
+    background-color: #808080   ;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-markerhijau {
+    background-position: -122px -2px;
+    background-color: #00ff00;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-markerhijau {
+    background-position: -120px -1px;
+    background-color: #00ff00;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-markerbiru {
+    background-position: -122px -2px;
+    background-color: #0066ff;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-markerbiru {
+    background-position: -120px -1px;
+    background-color: #0066ff;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-markerungu {
+    background-position: -122px -2px;
+    background-color: #cc00cc;
+}
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-markerungu {
+    background-position: -120px -1px;
+    background-color: #cc00cc;
+}
+
 
 /* ================================================================== */
 /* Edit toolbar

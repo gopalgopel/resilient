@@ -3,9 +3,9 @@
  * @aka Draw.Marker
  * @inherits L.Draw.Feature
  */
-L.Draw.Marker2 = L.Draw.Feature.extend({
+L.Draw.MarkerMerah = L.Draw.Feature.extend({
 	statics: {
-		TYPE: 'marker2'
+		TYPE: 'markermerah'
 	},
 
 	options: {
@@ -17,7 +17,7 @@ L.Draw.Marker2 = L.Draw.Feature.extend({
 	// @method initialize(): void
 	initialize: function (map, options) {
 		// Save the type so super can fire, need to do this as cannot do this.TYPE :(
-		this.type = L.Draw.Marker2.TYPE;
+		this.type = L.Draw.MarkerMerah.TYPE;
 
 		L.Draw.Feature.prototype.initialize.call(this, map, options);
 	},
@@ -28,7 +28,7 @@ L.Draw.Marker2 = L.Draw.Feature.extend({
 		L.Draw.Feature.prototype.addHooks.call(this);
 
 		if (this._map) {
-			this._tooltip.updateContent({ text: L.drawLocal.draw.handlers.marker2.tooltip.start });
+			this._tooltip.updateContent({ text: L.drawLocal.draw.handlers.markermerah.tooltip.start });
 
 			// Same mouseMarker as in Draw.Polyline
 			if (!this._mouseMarker) {
