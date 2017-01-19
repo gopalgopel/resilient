@@ -26,7 +26,7 @@ node windjs - https://www.npmjs.com/package/wind-js-leaflet
 http://danwild.github.io/wind-js-leaflet/
 
 ## BMKG
-'http://data.bmkg.go.id/'
+	http://data.bmkg.go.id/
 BMKG gempa terkini - http://data.bmkg.go.id/gempaterkini.xml
 BMKG cuaca jalur penyebrangan - http://data.bmkg.go.id/Maritim_Cuaca_Jalur_Penyebrangan.xml
 BMKG cuaca pelayaran - http://data.bmkg.go.id/Maritim_Cuaca_Pelayaran.xml
@@ -63,7 +63,7 @@ http://virtualfence.theoutpost.io/#
 http://leafletplayback.theoutpost.io/examples/example_1.html
 http://leafletplayback.theoutpost.io/examples/example_2.html#
 
-## arcGisDynamicMapLayer
+## ArcGisDynamicMapLayer
 https://developers.arcgis.com/javascript/3/jsapi/arcgisdynamicmapservicelayer-amd.html
 
 ## Leaflet Esri
