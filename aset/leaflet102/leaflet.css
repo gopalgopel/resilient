@@ -629,26 +629,3 @@
 	margin-left: -12px;
 	border-right-color: #fff;
 	}
-
-
-#logospp{
-  
-    /*border-left: 1px solid #1E5E8E;*/
-    position: absolute;
-    z-index: 999;
-    top: 5px;
-    left: 50px;
-  /*left: 90%;*/
-    padding: 0 20px 15px 7px;
-}
-#logoresilient img{
-    /*width: 220px;*/
-    /*height: 55px;*/
-
-    width: 264px;
-    height: 55px;
-    margin-left: 50px;
-    margin-top: 10px;
-    position: absolute;
-    z-index: 999;
-}

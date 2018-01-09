@@ -1,7 +1,14 @@
 <html>
 <head>
+  <style>
+      @font-face { font-family: resilient; src: url('ahundredmiles.ttf'); } 
+      h1 {
+         font-family: resilient
+      }
+    </style>
   <meta charset=utf-8 />
-  <title>Percobaan Peta Dishidros TNI AL</title>
+  <!-- <title>Percobaan Peta Dishidros TNI AL</title> -->
+  <title>Resilient Maps</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
 <!-- klo ngambil dari luar -->
@@ -12,20 +19,166 @@
 
   <!-- bootstrap dan font awesome -->
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="aset/bootstrap.min.css" />
+  <link rel="stylesheet" href="aset/font-awesome.min.css" />
+  <link rel="stylesheet" href="aset/bootleaf/leaflet.groupedlayercontrol.css" />
+  <!-- <link rel="stylesheet" href="aset/bootleaf/L.Control.Locate.css" /> -->
 
-<!-- ngambil dari dalem -->
-  <!-- leaflet -->
+  <!-- CSS -->
+  <link rel="stylesheet" href="aset/ResilientMaps.css" />
+  <link rel="stylesheet" href="aset/bootleaf/app.css" />
   <link rel="stylesheet" href="aset/leaflet102/leaflet.css" />
-  <script src="aset/leaflet102/leaflet-src.js"></script>
-  <script src="aset/leaflet.rotatedMarker.js"></script>
-  <script src="aset/esri-leaflet-2.0.6"></script>
-  <script src="aset/jQuery-v3.1.1.js"></script>
-
-  <!-- marker cluster -->
   <link rel="stylesheet" href="aset/MarkerCluster.css" />
   <link rel="stylesheet" href="aset/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="aset/L.Control.BetterScale.css" />
+  <link rel="stylesheet" href="aset/leafletdraw/leaflet.draw.css"/>
+  <link rel="stylesheet" href="aset/leaflet-search.css" />
+  <link rel="stylesheet" href="aset/leaflet-measure-path.css" />
+</head>
+
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <!-- <div class="navbar-icon-container">
+          <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+          <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+        </div> -->
+        <img class="pull-left" style="width:41px;height:41px;margin-top:5px;z-index:999;" src="aset/img/logo atas.png">
+        <!-- <a class="navbar-brand" href="#" style="font-family:resilient;font-size:35;">&nbsp;r.o.a.m</a> -->
+
+        
+        <!-- <a class="navbar-brand" style="font-size:15;font-weight: normal;margin-top:0px;" href="#">- Theater Planning Analysis System</a> -->
+        <a class="navbar-brand" style="font-family:resilient;font-size:30;font-weight: normal;margin-top:0px;" href="#">&nbsp;resilient . on . a . map</a>
+
+
+        
+      </div>
+      <div class="navbar-collapse collapse">
+        <!-- <form class="navbar-form navbar-right" role="search">
+          <div class="form-group has-feedback">
+              <input id="searchbox" type="text" placeholder="Search" class="form-control">
+              <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+          </div>
+        </form> -->
+
+
+        <ul class="nav navbar-nav pull-right">
+          
+
+          <!-- <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
+          <li class="dropdown">
+            <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Show Legend</a></li>
+              <li class="divider hidden-xs"></li>
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Login</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Download <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="data/boroughs.geojson" download="boroughs.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Boroughs</a></li>
+                <li><a href="data/subways.geojson" download="subways.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Subway Lines</a></li>
+                <li><a href="data/DOITT_THEATER_01_13SEPT2010.geojson" download="theaters.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Theaters</a></li>
+                <li><a href="data/DOITT_MUSEUM_01_13SEPT2010.geojson" download="museums.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Museums</a></li>
+              </ul>
+          </li> -->
+          <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Legend</a></li>
+          <li class="btn-group btn-group-sm" style="margin-top:10px;" role="group">
+            <button type="button" class="btn btn-info" id="backend"><i class="fa fa-gears"></i>  Backend</button>
+            <button type="button" class="btn btn-danger" id="logout"><i class="fa fa-sign-out"></i>  Logout</button>
+          </div>
+          <!-- <button type="button" class="btn btn-xs btn-default" id="sidebar-hide-btn">KANAN</button> -->
+        
+        </ul>
+
+      </div><!--/.navbar-collapse -->
+    </div>
+  </div>
+
+  <!-- <div id="atasbar">
+      <div id="logonoah"><img src="aset/img/logo atas.png"></div>
+      <div style="font-size:24;"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPAS </b>
+        <l style="font-size:13;">- Theatre Planning Analysis System</l>
+            <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn">KANAN</button>
+            <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn">KIRI</button>      
+      </div>
+  </div>  -->
+  
+  <!-- <div id="infokiri">sdgdfgdfgdfg</div> -->
+  <!-- <div id="infokanan"></div> -->
+  
+
+  <div id="container">
+    <div id="sidebar">
+      <div class="sidebar-wrapper">
+        <div class="panel panel-default" id="features">
+          <div class="panel-heading">
+            <h3 class="panel-title">Legend
+            <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-8 col-md-8">
+                <input type="text" class="form-control search" placeholder="Filter" />
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-table">
+            <table class="table table-hover" id="feature-list">
+              <thead class="hidden">
+                <tr>
+                  <th>Icon</th>
+                <tr>
+                <tr>
+                  <th>Name</th>
+                <tr>
+                <tr>
+                  <th>Chevron</th>
+                <tr>
+              </thead>
+              <tbody class="list"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="map"></div>
+  </div>
+
+  <!-- <div id="map"></div>    -->
+  <!-- <div id="logoresilient" > -->
+    <!-- <img src="aset/img/logosk.png"> -->
+  <!-- </div> -->
+
+
+
+
+  <!-- leaflet -->
+  <script src="aset/leaflet102/leaflet-src.js"></script>
+  <script src="aset/leaflet.rotatedMarker.js"></script>
+  <script src="aset/esri-leaflet-2.0.6.js"></script>
+  <script src="aset/esri-leaflet-cluster-debug.js"></script>
+  <script src="aset/jQuery-v3.1.1.js"></script>
+
+  <!-- leaflet search -->
+  <script src="aset/leaflet-search.js"></script>
+
+  <!-- leaflet grouplayer -->
+  <script src="aset/bootleaf/leaflet.groupedlayercontrol.js"></script>
+
+
+  <!-- leaflet control locate -->
+  <!-- <script src="aset/bootleaf/L.Control.Locate.min.js"></script> -->
+
+  <!-- marker cluster -->
   <script src="aset/MarkerCluster.js"></script>
   <script src="aset/DistanceGrid.js"></script>
   <script src="aset/MarkerClusterGroup.js"></script>
@@ -36,17 +189,14 @@
 
   <!-- scale -->
   <script src="aset/leaflet.nauticscale.js"></script>
-  <link rel="stylesheet" href="aset/L.Control.BetterScale.css" />
   <script src="aset/L.Control.BetterScale.js"></script>
 
   <!-- measurement -->
   <script src="aset/leaflet-measure-path.js"></script>
-  <link rel="stylesheet" href="aset/leaflet-measure-path.css" />
   
   <!-- draw -->
   <script src="aset/leafletdraw/Leaflet.draw.js"></script>
   <script src="aset/leafletdraw/Leaflet.Draw.Event.js"></script>
-  <link rel="stylesheet" href="aset/leafletdraw/leaflet.draw.css"/>
   <script src="aset/leafletdraw/Toolbar.js"></script>
   <script src="aset/leafletdraw/Tooltip.js"></script>
   <script src="aset/leafletdraw/ext/GeometryUtil.js"></script>
@@ -84,777 +234,16 @@
   <!-- <link rel="stylesheet" href="aset/easy-button.css" /> -->
   <script src="aset/Leaflet.Control.Custom.js"></script>
   
-  <!-- leaflet search -->
-  <link rel="stylesheet" href="aset/leaflet-search.css" />
-  <script src="aset/leaflet-search.js"></script>
-
-  
+  <!-- ESRI -->
   <!-- <script src="https://unpkg.com/esri-leaflet-vector@1.0.5"></script> -->
-  <script src="https://unpkg.com/esri-leaflet-cluster@2.0.0"></script>
+  <!-- <script src="https://unpkg.com/esri-leaflet-cluster@2.0.0"></script> -->
 
-  
 
-  <style>
-    body { margin:0; padding:0; }
-    #map { position: absolute; top:0; bottom:0; right:0; left:0; }
-  </style>
-</head>
-<body>
+  <!-- bootstrap -->
+  <script src="aset/bootstrap.min.js"></script>
 
-<div id="map"></div>
-
-<div id="logoresilient" >
-  <img src="aset/img/logosk.png">
-</div>
-
-<script>
-
-function IsJsonString(str) {try {JSON.parse(str)}catch (e) {return false}return true}
-
-// INIT MAP INIT MAP INIT MAP INIT MAP INIT MAP
-// INIT MAP INIT MAP INIT MAP INIT MAP INIT MAP
-// INIT MAP INIT MAP INIT MAP INIT MAP INIT MAP
-var map;
-var overlays, baseMaps, bsm, layerControl1, layerControl2;
-var configMap = {
-        latCenter : 6-(6-(-11))/2,
-        lonCenter : 95+(141-95)/2,
-        zoom :5,
-        mapUrl : 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        mapStyleId : 22677
-};
-
-var minimal   = L.tileLayer(configMap.mapUrl,{styleId: configMap.mapStyleId});  
-
-map = new L.map('map', {
-  // drawControl: true,
-  center: [configMap.latCenter, configMap.lonCenter],
-  zoom: configMap.zoom,
-  layers: [minimal],
-  maxZoom : 18,
-  minZoom : 3
-  // worldCopyJump : true
-});
-
-var baseLayers = {
-  "Default": minimal,
-};
-
-// ICON ICON ICON
-var gmpaIcon = L.icon({
-  iconUrl: 'aset/img/epic.gif',      
-  iconSize:     [50, 50], 
-  iconAnchor:   [25, 25], 
-});
-var aiscon = L.icon({
-  iconUrl: 'aset/img/v.png',      
-  iconSize:     [24, 24], 
-  iconAnchor:   [12, 12], 
-});
-    
-// draw and edit control    
-    var drawnItems = L.featureGroup().addTo(map);
-    // L.control.layers(null, { 'drawlayer': drawnItems }, { position: 'topleft'}).addTo(map);
-    var ldraw = new L.Control.Draw({
-        edit: {
-            featureGroup: drawnItems,
-            poly: {
-                allowIntersection: false  
-                // shapeOptions:{showMeasurements: true}
-                // selectedPathOptions:{showMeasurements: true}
-                // edit:{selectedPathOptions:{updateMeasurements: true}}
-                // showMeasurements: true
-            }
-            // edit:{selectedPathOptions:{updateMeasurements: true}}
-        },
-        draw: {
-            polygon: {
-                allowIntersection: false,
-                shapeOptions:{showMeasurements: true},
-                showArea: true
-            },
-            // polygonabu: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#808080",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonmerah: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#ff0000",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonbiru: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#0066ff",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonkuning: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#ffff00",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonhijau: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#00ff00",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonungu: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#cc00cc",showMeasurements: true},
-            //     showArea: true
-            // },
-            polyline: {
-                shapeOptions:{
-                  showMeasurements: true
-                }
-            },
-            rectangle: {
-                showRadius: true,
-                shapeOptions:{showMeasurements: true}
-            },
-            // markermerah: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconmerah.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
-            // markerhijau: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconhijau.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
-            // markerbiru: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconbiru.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
-            // markerungu: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconungu.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
-            // markerabu: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconabu.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
-            circle: {
-                shapeOptions:{showMeasurements: true}
-            }
-        }
-    });
-    ldraw.addTo(map);
-    
-    map.on(L.Draw.Event.CREATED, function (event) {
-        var layer = event.layer;
-        // drawnItems.bindPopup('hahahaha');
-        // console.log(event);
-        myBindPopUp(layer);
-        
-        drawnItems.addLayer(layer); 
-    });
-
-// window prompt, asking bindpopup!    
-function myBindPopUp(objek) {
-    var popup = prompt("Masukan deskripsi dari gambar / marker", "");
-    
-    if (popup != null) {
-        objek.bindPopup(popup);
-    }
-}
-//window prompt, asking bindpopup!
-
-
-// menu easy button
-// var helloPopup = L.popup().setContent('munculin sesuatu');
-// L.easyButton('fa-tree', function(btn, map){
-//     helloPopup.setLatLng(map.getCenter()).openOn(map);
-// }).addTo(map);
-
-//menu custom button
-L.control.custom({
-    position: 'topright',
-    content : //'<button type="button" class="btn btn-default">'+
-              // '    <i class="fa fa-crosshairs"></i>'+
-              // '</button>'+
-              // '<button type="button" class="btn btn-info">'+
-              // '    <i class="fa fa-compass"></i>'+
-              // '</button>'+
-              // '<button type="button" class="btn btn-primary">'+
-              // '    <i class="fa fa-spinner fa-pulse fa-fw"></i>'+
-              // '</button>'+
-              // '<button type="button" class="btn btn-danger">'+
-              // '    <i class="fa fa-times"></i>'+
-              // '</button>'+
-              // '<a href="backend.html">'+
-              '<button type="button" class="btn btn-success">'+
-              '    <i class="fa fa-gears"></i>'+
-              '    Menu Pengaturan! '+
-              // '</a>'+
-              // '    <i class="fa fa-check"></i>'+
-              // '</button>'+
-              // '<button type="button" class="btn btn-warning">'+
-              // '    <i class="fa fa-exclamation-triangle"></i>'+
-              '</button>',
-    // classes : 'btn-group-vertical btn-group-sm',
-    classes : 'btn-group btn-group-sm',
-    style   :
-    {
-        // margin: '10px',
-        // padding: '0px 0 0 0',
-        // marginLeft: '-90px',
-        // marginTop: '10px',
-        cursor: 'pointer',
-        // position: 'absolute',
-    
-    },
-    datas   :
-    {
-        'foo': 'bar',
-    },
-    events:
-    {
-        click: function(data)
-        {
-            console.log('wrapper div element clicked');
-            console.log(data);
-            window.location.href = "backend.html";
-        },
-        dblclick: function(data)
-        {
-            console.log('wrapper div element dblclicked');
-            console.log(data);
-        },
-        contextmenu: function(data)
-        {
-            console.log('wrapper div element contextmenu');
-            console.log(data);
-        },
-    }
-})
-.addTo(map);
-
-// LEAFLET search
-map.addControl( new L.Control.Search({
-    url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
-    jsonpParam: 'json_callback',
-    propertyName: 'display_name',
-    propertyLoc: ['lat','lon'],
-    marker: L.circleMarker([0,0],{radius:20}),
-    // autoCollapse: true,
-    autoType: false,
-    position: 'topright',
-    collapsed: false,
-    // autoCollapse: false,
-    // hideMarkerOnCollapse: true,
-    minLength: 2
-  }) );
-
-// L.polyline([
-//         [57.67, 11.85],
-//         [57.677, 11.86],
-//         [57.68, 11.85],
-//         [57.69, 11.86],
-//     ], {showMeasurements: true, measurementOptions: {imperial:true}})
-//     .addTo(map);
-
-
-// MAP LAIN MAP LAIN MAP LAIN MAP LAIN MAP LAIN
-// MAP LAIN MAP LAIN MAP LAIN MAP LAIN MAP LAIN
-// MAP LAIN MAP LAIN MAP LAIN MAP LAIN MAP LAIN
-var Esri_OceanBasemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {maxZoom: 13});
-var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {maxZoom: 19});
-var standard = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18,});
-var primar = L.tileLayer.wms("http://primar.ecc.no/primar/wms_session", {    layers: 'cells',    format: 'image/png',    noWrap: true,    transparent: true    });
-
-var gray = L.esri.basemapLayer('Gray');//.addTo(map);
-var streets = L.esri.basemapLayer('Streets');//.addTo(map);
-var topo = L.esri.basemapLayer('Topographic');//.addTo(map);
-var nationalgeo = L.esri.basemapLayer('NationalGeographic');//.addTo(map);
-var ocean = L.esri.basemapLayer('Oceans');//.addTo(map);
-var darkgray = L.esri.basemapLayer('DarkGray');//.addTo(map);
-var image = L.esri.basemapLayer('Imagery');//.addTo(map);
-var shade = L.esri.basemapLayer('ShadedRelief');//.addTo(map);
-var terain = L.esri.basemapLayer('Terrain');//.addTo(map);
-var usa = L.esri.basemapLayer('USATopo');//.addTo(map);
-
-// var mid = L.esri.Vector.basemap('MidCentury');//.addTo(map);
-// var news = L.esri.Vector.basemap('Newspaper');//.addTo(map);
-// var spring = L.esri.Vector.basemap('Spring');//.addTo(map);
-
-var dishidros = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.go.id/arcgis/rest/services/enc_indonesia/MapServer/exts/Maritime%20Chart%20Service/MapServer', opacity: 0.6, f:'image'});
-// var dishidrost = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.go.id/arcgis/rest/services/enc_indonesia/MapServer/exts/Maritime%20Chart%20Service/MapServer', opacity: 0.6, 
-//   f:'image', format:'jpeg', frames_on:false, 
-//   display_params:{"ECDISParameters":{"version":"1.0","StaticParameters":{"Parameter":[{"name":"AreaSymbolizationType","value":2},{"name":"PointSymbolizationType","value":2}]},"DynamicParameters":{"Parameter":[{"name":"ColorScheme","value":1},{"name":"DisplayDepthUnits","value":1},{"name":"TwoDepthShades","value":1},{"name":"DisplayNOBJNM","value":2},{"name":"HonorScamin","value":2},{"name":"ShallowDepthPattern","value":1},{"name":"ShallowContour","value":2},{"name":"SafetyContour","value":10},{"name":"DeepContour","value":30},{"name":"DisplayCategory","value":"1,2,4"}]}}}
-// });
-
-var migas = L.esri.dynamicMapLayer({url: 'http://webgis.den.go.id/arcgis/rest/services/Pipa_Hulu_Migas/MapServer', opacity: 0.9, f:'image'});
-var rapingla = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.tnial.mil.id/arcgis/rest/services/raplingla/MapServer', opacity: 0.7, f:'image'});
-var pasut = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.tnial.mil.id/arcgis/rest/services/Pasut/MapServer', opacity: 0.7, f:'image'});
-
-var kkp = L.esri.dynamicMapLayer({
-  url: 'http://www.ppk-kp3k.kkp.go.id/ArcGIS/rest/services/kkp/Kawasan/MapServer', 
-  opacity: 1,
-  useCors : false,
-  f:'image'
-});
-
-// var ais = L.esri.featureLayer({
-var ais = L.esri.Cluster.featureLayer({
-    url: 'http://geoeventsample1.esri.com:6080/arcgis/rest/services/Hosted/exactEarthCurrent/FeatureServer/0',
-    opacity:1,
-    pointToLayer: //setInterval(function(geojson, latlng){
-      function (geojson, latlng){   
-        console.log(geojson);
-        return L.marker(latlng, {rotationAngle: geojson.properties.cog, icon: aiscon})
-           .bindPopup("<table width=100% style='font-size:11px'><tr>"+
-                      "<td>Nama kapal </td><td>: "+geojson.properties.vessel_name+"</td>"+
-                      "</tr><tr>"+
-                      "<td>Type kapal </td><td>: "+geojson.properties.vessel_type+"</td>"+
-                      "</tr><tr>"+
-                      "<td>Kelas Kapal </td><td>: "+geojson.properties.vessel_class+"</td>"+
-                      "</tr><tr>"+
-                      "<td>Callsign </td><td>: "+geojson.properties.callsign+"</td>"+
-                      "</tr><tr>"+
-                      "<td>Status </td><td>: "+geojson.properties.nav_status+"</td>"+
-                      "</tr><tr>"+
-                      "<td>Latitude </td><td>: "+geojson.properties.latitude+"</td>"+
-                      "</tr><tr>"+
-                      "<td>longitude </td><td>: "+geojson.properties.longitude+"</td>"+
-                      "</tr><tr>"+
-                      "<td>MMSI </td><td>: "+geojson.properties.mmsi+"</td>"+
-                      "</tr><tr>"+
-                      "<td>COG </td><td>: "+geojson.properties.cog+"</td>"+
-                      "</tr><tr>"+
-                      "<td>SOG </td><td>: "+geojson.properties.sog+"</td>"+
-                      "</tr><tr>"+
-                      "<td>Flag </td><td>: "+geojson.properties.flag+"</td>"+
-                      "</tr><tr>"+
-                      "<td>Destination </td><td>: "+geojson.properties.destination+"</td>"+
-                      "</tr><tr>"+
-                      "<td>Draught </td><td>: "+geojson.properties.draught+" m</td>"+
-                      "</tr><tr>"+
-                      "<td>Panjang </td><td>: "+geojson.properties.length+" m</td>"+
-                      "</tr><tr>"+
-                      "<td> Lebar </td><td>: "+geojson.properties.width+" m</td>"+
-                      "</tr></table>"
-                      );
-      }
-    // }, 5000)
-  });
-
-// control layer lainnya
-// control layer lainnya
-// control layer lainnya
-
-// var polygon = L.polygon([
-//         [6.69, 113.89],
-//         [7.697, 117.88],
-//         [-8.71, 121.89],
-//         [-9.71, 115.91],
-//         [-10.69, 112.91]
-//     ], {showMeasurements: true});
-
-// var bulat = L.circle([-2.694, 117.94],99600, {showMeasurements: true});
-
-
-
-/////////////////////
-
-var KRI, LANAL, SATGAS, MARINIR, PANGKALAN, LANUD,LANAD, KODAM, AJENDAM, BandaraM, BandaraS;
-KRI = L.layerGroup([]);
-LANAL = L.layerGroup([]);
-MARINIR = L.layerGroup([]);
-SATGAS = L.layerGroup([]);
-PANGKALAN = L.layerGroup([]);
-LANUD = L.layerGroup([]);
-LANAD = L.layerGroup([]);
-KODAM = L.layerGroup([]);
-AJENDAM = L.layerGroup([]);
-BandaraM = L.layerGroup([]);
-BandaraS = L.layerGroup([]);
-var tni = {
-        // "drawlayer": drawnItems,
-        // "Polygon" : polygon,
-        // "Bulat" : bulat,
-        "Peta TNI AL" : dishidros,
-        "Peta TNI AD" : dishidros,
-        "Peta TNI AU <br><hr><b>Kekuatan TNI AL</b>" : dishidros,
-        // "<br><br><hr><b>Kekuatan TNI AL</b>" : dishidros,
-        "KRI": KRI,
-        "Lanal" : LANAL,
-        "Marinir" : MARINIR,
-        "Satgas <br><hr><b>Kekuatan TNI AD</b>" : SATGAS,
-        "Kodam" : KODAM,
-        "Lanad" : LANAD,
-        "Ajendam <br><hr><b>Kekuatan TNI AU</b>": AJENDAM,
-        "Pangkalan " : PANGKALAN,
-        "Bandara Militer": BandaraM,
-        "Bandara Sipil": BandaraS,
-        "Lanud": LANUD
-    };
-// layerControl2 = L.control.layers(tni).addTo(map);
-
-// control layer lainnya
-// control layer lainnya
-// control layer lainnya
-
-
-baseMaps = {
-  // "Ocean": Esri_OceanBasemap,
-  "Black": CartoDB_DarkMatter,
-  "OSM Standard <br><hr><b>Esri Map</b>": standard,
-  "Gray": gray, 
-  "Streets": streets,
-  "Topo": topo,
-  "NatGeo": nationalgeo,
-  "Ocean": ocean,
-  "DarkGry": darkgray,
-  "Imagy": image,
-  "Shade": shade,
-  "Terain": terain,
-  "USA topo": usa
-  // "Mid": mid,
-  // "Spring" : spring,
-  // "News": news
-};
-
-bsm = {
-  // "Black": CartoDB_DarkMatter,
-  "Open Street": standard,
-  // "Gray": gray, 
-  "Streets": streets,
-  "Topo": topo,
-  "NatGeo": nationalgeo,
-  "Ocean": ocean,
-  // "DarkGry": darkgray,
-  "Imagy": image,
-  "Shade": shade,
-  // "Terain": terain
-  // "USA topo": usa
-  // "Mid": mid,
-  // "Spring" : spring,
-  // "News": news
-};
-        
-// CUACA GEMPA CUACA GEMPA CUACA GEMPA CUACA GEMPA
-// CUACA GEMPA CUACA GEMPA CUACA GEMPA CUACA GEMPA
-// CUACA GEMPA CUACA GEMPA CUACA GEMPA CUACA GEMPA
-var listGempa = [];
-var gempa = L.layerGroup(listGempa);
-var angin = L.layerGroup();
-var gelombang = L.layerGroup();
-var awan = L.layerGroup();
-var hujan = L.layerGroup();
-
-// var bas = "http://localhost/getcuaca/bin/hasil/"; 
-var bas = "http://192.168.1.118/getcuaca/bin/hasil/"; 
-var bmkg = bas+"gempaterkini.xml"; 
-// var bmkg = bas+"gempaauto.xml";
-var tgl,jam,lat,lon,mag,ked,wil,pot,cek7hr;
-var koor = [];
-
-$.ajax({
-  type: 'GET',        
-  url: bmkg,
-  dataType: "xml",
-  success:function(xml){
-    $(xml).find('Infogempa').each(function(){
-      $(this).find("gempa").each(function(){
-
-        info = $(this).text(); 
-        $(this).find("Tanggal").each(function(){
-          tgl = $(this).text();                   
-          var d = new Date();
-          d.setDate(d.getDate() - 7); // disini diset brp hari yg lalu, misal 7 hari yg lalu jadinya - 7
-          if (d - new Date(tgl) <= 0){cek7hr = true} else cek7hr = false;
-        });
-        $(this).find("Jam").each(function(){jam = $(this).text()});
-        $(this).find("point").each(function(){
-          $(this).find("coordinates").each(function(){koor = $(this).text().split(",")}); 
-        });
-        $(this).find("Lintang").each(function(){lat = $(this).text()});
-        $(this).find("Bujur").each(function(){lon = $(this).text()});
-        $(this).find("Magnitude").each(function(){mag = $(this).text()});
-        $(this).find("Kedalaman").each(function(){ked = $(this).text()});
-        $(this).find("Wilayah").each(function(){wil = $(this).text()}); 
-        
-        // cek ini 2hr lalu ga?
-        if (cek7hr){
-          // bikin icon
-          var gmpa = L.marker([koor[1],koor[0]], {icon: gmpaIcon})
-            .bindTooltip("<table  style='font-size:10px'><tr>"+
-                          "<td>Tanggal </td><td>: "+tgl+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Jam </td><td>: "+jam+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Lintang </td><td>: "+lat+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Bujur </td><td>: "+lon+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Magnitude </td><td>: "+mag+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Kedalaman </td><td>: "+ked+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Wilayah </td><td>: "+wil+"</td>"+
-                        "</tr></table>",
-                {opacity:0.8, sticky:true});
-          listGempa.push(gmpa);                   
-        }// end of cek (if)
-
-      });
-    });
-    gempa = L.layerGroup(listGempa);
-  }
-}); 
-
-  
-// INIT BATAS INIT BATAS INIT BATAS INIT BATAS
-// INIT BATAS INIT BATAS INIT BATAS INIT BATAS
-// INIT BATAS INIT BATAS INIT BATAS INIT BATAS
-var tik, terline1,terline2,terline3,terline4, pklline1,pklline2,pklline3, tmbline1,tmbline2,tmbline3,tmbline4,tmbline5, zeeline1,zeeline2,zeeline3,zeeline4,zeeline5,zeeline6;
-var teri, zee, tmbline, pklline, konline, stline;
-var urlbatasL = 'aset/batasline.json';  
-
-$.ajax({
-  type: 'GET',        
-  url: urlbatasL,        
-  success:function(response){
-    // console.log('batas',response);
-    var teritorialList1 =[]; var teritorialList2 =[]; var teritorialList3 =[]; var teritorialList4 =[];
-    var pangkalList1 = []; var pangkalList2 = []; var pangkalList3 = [];
-    var tambahanList1 = []; var tambahanList2 = []; var tambahanList3 = []; var tambahanList4 = []; var tambahanList5 = [];
-    var zeeList1 = []; var zeeList2 = []; var zeeList3 = []; var zeeList4 = []; var zeeList5 = []; var zeeList6 = [];
-    var kontinenList = []; var stList = [];         
-
-    for (i = 0; i < response.features.length; i++) { 
-      for (ii = 0; ii < response.features[i].latlon.length; ii++) { 
-        if (response.features[i].tag == "ter1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList1.push(tik); }
-        if (response.features[i].tag == "ter2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList2.push(tik); }
-        if (response.features[i].tag == "ter3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList3.push(tik); }
-        if (response.features[i].tag == "ter4"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList4.push(tik); }
-
-        if (response.features[i].tag == "pkl1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); pangkalList1.push(tik); }
-        if (response.features[i].tag == "pkl2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); pangkalList2.push(tik); }
-        if (response.features[i].tag == "pkl3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); pangkalList3.push(tik); }
-
-        if (response.features[i].tag == "tmb1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList1.push(tik); }
-        if (response.features[i].tag == "tmb2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList2.push(tik); }
-        if (response.features[i].tag == "tmb3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList3.push(tik); }
-        if (response.features[i].tag == "tmb4"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList4.push(tik); }
-        if (response.features[i].tag == "tmb5"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList5.push(tik); }
-
-        if (response.features[i].tag == "zee1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList1.push(tik); }
-        if (response.features[i].tag == "zee2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList2.push(tik); }
-        if (response.features[i].tag == "zee3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList3.push(tik); }
-        if (response.features[i].tag == "zee4"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList4.push(tik); }
-        if (response.features[i].tag == "zee5"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList5.push(tik); }
-        if (response.features[i].tag == "zee6"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList6.push(tik); }
-
-        if (response.features[i].tag == "kon"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); kontinenList.push(tik); }
-        if (response.features[i].tag == "197"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); stList.push(tik); }         
-      }
-    }
-    
-    terline1 = new L.polyline(teritorialList1, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
-    terline2 = new L.polyline(teritorialList2, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
-    terline3 = new L.polyline(teritorialList3, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
-    terline4 = new L.polyline(teritorialList4, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
-
-    pklline1 = new L.polyline(pangkalList1, {color: 'red', weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('garis pangkal', { noHide: true }); //.addTo(map);
-    pklline2 = new L.polyline(pangkalList2, {color: 'red', weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('garis pangkal', { noHide: true }); //.addTo(map);
-    pklline3 = new L.polyline(pangkalList3, {color: 'red', weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('garis pangkal', { noHide: true }); //.addTo(map);
-
-    tmbline1 = new L.polyline(tambahanList1, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-    tmbline2 = new L.polyline(tambahanList2, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-    tmbline3 = new L.polyline(tambahanList3, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-    tmbline4 = new L.polyline(tambahanList4, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-    tmbline5 = new L.polyline(tambahanList5, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-
-    zeeline1 = new L.polyline(zeeList1, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline2 = new L.polyline(zeeList2, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline3 = new L.polyline(zeeList3, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline4 = new L.polyline(zeeList4, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline5 = new L.polyline(zeeList5, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline6 = new L.polyline(zeeList6, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-
-    konline = new L.polyline(kontinenList, {color: "#2E9AFE", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('landas kontinent', { noHide: true }); //.addTo(map);
-    stline = new L.polyline(stList, {color: "#0901ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('perjanjian 1997', { noHide: true }); //.addTo(map);
-
-    teri = L.layerGroup([terline1, terline2, terline3, terline4]);
-    zee = L.layerGroup([zeeline1, zeeline2, zeeline3, zeeline4, zeeline5, zeeline6]);
-    tmbline = L.layerGroup([tmbline1, tmbline2, tmbline3, tmbline4, tmbline5]);
-    pklline = L.layerGroup([pklline1, pklline2, pklline3]);
-    
-    //masukin semua overlays disini
-    overlays = {
-        // "<font color='#2E9AFE'>Landas Kontinent</font>": konline, 
-        // "<font color='#0901ff'>Perjanjian 1997</font>": stline, 
-        "<font color='red'>Garis Batas</font>": pklline,
-        "<font color='#7700ff'>Teritorial</font>": teri,
-        "<font color='#DBA901'>Zona Plus</font>": tmbline, 
-        "<font color='#088A08'>ZEE</font> <br><hr><b>Peta Tambahan</b>": zee,
-
-        "Dishidros" : dishidros,
-        // "DishidrosT" : dishidrost,
-        "AIS": ais,
-        "KKP wilayah" : kkp,
-        "Hulu Migas" : migas,
-        "Rapingla" : rapingla,
-        "Pasut  <br><hr><b>Cuaca & Gempa</b>" : pasut,
-        
-        "Gempa 7hr": gempa,
-        "Angin": angin,
-        "Gelombang": gelombang,
-        "Awan": awan,
-        "Hujan": hujan
-    };
-
-    layerControl1 = L.control.layers(baseMaps, overlays).addTo(map);
-    layerControl2 = L.control.layers(null,tni, {position:'topright'}).addTo(map);
-    // L.Control.measureControl(tni).addTo(map);
-
-
-  },
-  error: function() {
-    console.log("Error json request"); 
-    window.confirm("Data batas gagal diload");
-  }
-}); 
-
-// LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN
-// LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN
-// LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN
-var attrib = new L.Control.Attribution;
-map.addControl(attrib); 
-attrib.setPrefix('Koordinat : ');
-map.on('mousemove', function(e) {
-  attrib.setPrefix('Koordinat : '+e.latlng.lat+", "+e.latlng.lng+'. Zoom:'+map.getZoom()+'. Created by Gopal, 2017');
-});
-
-var EDITSTAT, DRAWSTAT;
-map.on('draw:editstart', function(e) {
-       EDITSTAT = true;       
-});
-map.on('draw:editstop', function() {
-  EDITSTAT = false;
-});
-map.on('draw:drawstart', function(e) {
-  var type = e.layerType;
-  if (type === 'polyline' || type === 'polygon')
-       DRAWSTAT = true;
-});
-map.on('draw:drawstop', function() {
-  DRAWSTAT = false;
-});
-// calculate_bearing(awal,new L.LatLng(lat,lon));
-
-// function calculate_bearing(start_pos,stop_pos){
-//   var lat1 = Geo.parseDMS(start_pos.lat);
-//   var lon1 = Geo.parseDMS(start_pos.lng);
-//   var lat2 = Geo.parseDMS(stop_pos.lat);
-//   var lon2 = Geo.parseDMS(stop_pos.lng);
-//   var p1 = new LatLon(lat1, lon1);
-//   var p2 = new LatLon(lat2, lon2);
-//   lat1=null;lat2=null;lon1=null;lon2=null;
-//   return Geo.toBrng(p1.bearingTo(p2),'dm');
-//   p1=null;p2=null;
-// }
-
-
-// L.control.scale().addTo(map);
-// L.control.betterscale().addTo(map);
-
-map.addControl(new L.Control.ScaleNautic({
-                metric: true,
-                imperial: true,
-                nautic: true
-            }));
-
-
-// adding test data
-   // var geojson1 = L.geoJson(JSON.parse(data1),opts1).addTo(map);
-   // var geojson2= L.geoJson(JSON.parse(data2),opts2).addTo(map);
-
-//     .addTo(map);
-
-
-   // setting options 
-   // var options = {geodesic: true};
-
-   //input parameter is Array of layers
-   // var layers = [polygon,bulat];
-
-   // initialize control
-   // var control = L.Control.measureAreaControl(options, layers, {collapsed:false}).addTo(map);
-
-
-
-// var polygon = L.polygon([
-//         [48.10804729138659, 17.106292247772217],
-//         [48.10853443729303, 17.106292247772217],
-//         [48.10853443729303, 17.1071720123291],
-//         [48.10804729138659, 17.1071720123291],
-//         [48.10804729138659, 17.106292247772217]
-//     ]).addTo(map);
-//     control.addLayer(polygon);
-   // polygon.enableEdit();
-        // map.on('editable:vertex:drag editable:vertex:deleted', polygon.updateMeasurements, polygon);
-
-
-// L.polyline([
-//         [57.67, 11.85],
-//         [57.677, 11.86],
-//         [57.68, 11.85],
-//         [57.69, 11.86],
-//     ], {showMeasurements: true, measurementOptions: {imperial:true}})
-//     .addTo(map);
-
-// L.circle([57.694, 11.94], 1000, {showMeasurements: true})
-//     .addTo(map);
-
-// L.circle([57.705, 11.92], 750, {showMeasurements: true, measurementOptions: {imperial:true}})
-//     .addTo(map);
-
-// polygon.enableEdit();
-// map.on('editable:vertex:drag editable:vertex:deleted', polygon.updateMeasurements, polygon);
-
-
-
-// var drawnItems = baseLayers.overlays.draw;
-//         map.on('draw:created', function (e) {
-//           var layer = e.layer;
-//           drawnItems.addLayer(layer);
-//           console.log(JSON.stringify(layer.toGeoJSON()));
-//         });
-
-
-//pke default map esri gray (ga detil)
-  // var map = L.map('map').setView([37.71, -99.88], 4);
-  // L.esri.basemapLayer('Gray').addTo(map);
-
-//klo mau overlay lgsg dgn map lain. opacitynya aja diatur  
-  // L.esri.dynamicMapLayer({
-  //   url: 'http://hdc.dishidros.go.id/arcgis/rest/services/enc_indonesia/MapServer/exts/Maritime%20Chart%20Service/MapServer',
-  //   opacity: 0.8,
-  //   f:'image'
-  // }).addTo(map);
-
-</script>
+  <!-- <script src="aset/bootleaf/app.js"></script> -->
+  <script src="aset/ResilientMaps.js"></script>
 
 </body>
 </html>

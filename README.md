@@ -45,6 +45,7 @@ leaflet better scale - https://github.com/daniellsu/leaflet-betterscale
 leaflet draw - http://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html
 leaflet control custom - https://github.com/yigityuce/Leaflet.Control.Custom
 leaflet measure path - https://github.com/ProminentEdge/leaflet-measure-path
+leaflet search - https://github.com/stefanocudini/leaflet-search
 
 leaflet timeline - https://github.com/skeate/Leaflet.timeline
 http://skeate.github.io/Leaflet.timeline/earthquakes.html
@@ -71,3 +72,8 @@ leaflet esri 2.0.6 - https://github.com/Esri/esri-leaflet
 leaflet esri dynamic map - http://esri.github.io/esri-leaflet/api-reference/layers/dynamic-map-layer.html
 leaflet esri cluster - http://esri.github.io/esri-leaflet/api-reference/layers/clustered-feature-layer.html
 
+## NPM
+date format - https://www.npmjs.com/package/dateformat
+
+## Other
+bootleaf - http://bmcbride.github.io/bootleaf/
