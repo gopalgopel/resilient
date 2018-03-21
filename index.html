@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="aset/leafletdraw/leaflet.draw.css"/>
   <link rel="stylesheet" href="aset/leaflet-search.css" />
   <link rel="stylesheet" href="aset/leaflet-measure-path.css" />
+  <link rel="stylesheet" href="aset/wind-js-leaflet.css" />
 </head>
 
 <body>
@@ -87,11 +88,12 @@
                 <li><a href="data/DOITT_MUSEUM_01_13SEPT2010.geojson" download="museums.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Museums</a></li>
               </ul>
           </li> -->
-          <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Legend</a></li>
+          <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="sidebar-legend-btn"><i class="fa fa-list "></i>&nbsp;&nbsp;Legend</a></li>
+          <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="sidebar-form-btn"><i class="fa fa-pencil "></i>&nbsp;&nbsp;Form</a></li>
           <li class="btn-group btn-group-sm" style="margin-top:10px;" role="group">
             <button type="button" class="btn btn-info" id="backend"><i class="fa fa-gears"></i>  Backend</button>
             <button type="button" class="btn btn-danger" id="logout"><i class="fa fa-sign-out"></i>  Logout</button>
-          </div>
+          <!-- </div> -->
           <!-- <button type="button" class="btn btn-xs btn-default" id="sidebar-hide-btn">KANAN</button> -->
         
         </ul>
@@ -117,11 +119,99 @@
     <div id="sidebar">
       <div class="sidebar-wrapper">
         <div class="panel panel-default" id="features">
+          
           <div class="panel-heading">
-            <h3 class="panel-title">Legend
-            <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+            <h3 class="panel-title">Legend Draw Map
+            <button type="button" class="btn btn-xs btn-default pull-right" id="tutupS"><i class="fa fa-chevron-left"></i></button></h3>
           </div>
+
           <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-8 col-md-8">
+                <input type="text" class="form-control search" placeholder="Filter" />
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="download-btn"><i class="fa fa-download"></i>&nbsp;&nbsp;Download All</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sidebar-table">
+            <table class="table table-hover table-striped" id="feature-list">
+              <!-- <thead class="hidden"> -->
+              <thead>
+                <tr>
+                  <th>Jenis</th>
+                  <th>Deskripsi</th>
+                <tr>
+              </thead>
+              <tbody class="list">
+               <!--  <tr>
+                  <td><img src="aset/img/lingkaran.png" width="20" height="20"></td>
+                  <td>kawasan bajak laut</td>
+                </tr>
+                <tr>
+                  <td><img src="aset/img/marker.png" width="20" height="20"></td>
+                  <td>kawasan bajak laut</td>
+                </tr>
+                <tr>
+                  <td><img src="aset/img/markerbulat.png" width="20" height="20"></td>
+                  <td>kawasan bajak laut</td>
+                </tr><tr>
+                  <td><img src="aset/img/polyline.png" width="20" height="20"></td>
+                  <td>kawasan bajak laut</td>
+                </tr>
+                <tr>
+                  <td><img src="aset/img/polygon.png" width="20" height="20"></td>
+                  <td>kawasan bajak laut</td>
+                </tr>
+                <tr>
+                  <td><img src="aset/img/kotak.png" width="20" height="20"></td>
+                  <td>kawasan bajak laut</td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+
+    <div id="rightbar">
+      <div class="rightbar-wrapper">
+        <div class="panel panel-default" id="features">
+          
+          <div class="panel-heading">
+            <a data-toggle="collapse" href="#formlaporan" aria-controls="formlaporan">
+              <h3 class="panel-title">
+                <button type="button" class="btn btn-xs btn-default pull-right" id="tutupR"><i class="fa fa-chevron-right"></i></button>
+                <!-- <button type="button" class="btn btn-xs btn-default pull-right" data-toggle="collapse" data-target="#formlaporan"><i class="fa fa-sort"></i></button> -->
+                <i class="fa fa-sort"></i>&nbsp;&nbsp;Form Input Laporan
+              </h3>
+            </a>
+            
+          </div>
+
+          <div class="panel-body collapse" id="formlaporan">
+          <form>
+            <div class="form-group"><input class="form-control type="text" placeholder="Judul Laporan"></div>
+            <div class="form-group"><input class="form-control type="text" placeholder="Kategori"></div>
+            <div class="form-group"><div class="row">
+              <div class="col-md-4"><input class="form-control" type="text" placeholder="Lat"></div>
+              <div class="col-md-4"><input class="form-control" type="text" placeholder="Lon"></div>
+              <div class="col-md-4"><button class="form-control btn btn-success" id="selectloc"><i class="fa fa-map-marker"></i></button></div>
+            </div></div>
+            <div class="form-group"><input type="date" placeholder="tanggal"></div>
+            <div class="form-group"><textarea class="form-control" placeholder="Isi laporan"></textarea></div>
+            <div class="form-group"><input type="file"></br></div>
+            <button type="submit" id="kirim" class="btn btn-success"><i class="fa fa-send-o"></i>&nbsp;&nbsp;Submit</button>
+            <button type="reset" id="bersih" class="btn btn-warning"><i class="fa fa-undo"></i>&nbsp;&nbsp;Reset Form</button>
+          </form>
+            
+            
+            </br></br>-----------------------------------------------</br>
+            
+            <h3>Tabel Laporan</h3>
             <div class="row">
               <div class="col-xs-8 col-md-8">
                 <input type="text" class="form-control search" placeholder="Filter" />
@@ -131,26 +221,70 @@
               </div>
             </div>
           </div>
-          <div class="sidebar-table">
-            <table class="table table-hover" id="feature-list">
-              <thead class="hidden">
+          
+
+          <!-- COLAPSIBEL -->
+          <!-- <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Link with href
+            </a>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Button with data-target
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+            </div>
+          </div> -->
+          <!-- COLAPSIBEL -->
+
+          <div class="rightbar-table">
+            <table class="table table-hover table-striped" id="feature-lost">
+              <thead>
                 <tr>
-                  <th>Icon</th>
-                <tr>
-                <tr>
-                  <th>Name</th>
-                <tr>
-                <tr>
-                  <th>Chevron</th>
+                  <th>Tgl</th>
+                  <th>Ktgr</th>
+                  <th>File</th>
                 <tr>
               </thead>
-              <tbody class="list"></tbody>
+              <tbody class="list">
+                <tr>
+                  <td>28-02-2018</td>
+                  <td>#kriminal</td>
+                  <td><a href><i class="fa fa-file"></i></a></td>
+                </tr>
+                <tr>
+                  <td>24-02-2018</td>
+                  <td>#mata2</td>
+                  <td><a href><i class="fa fa-file"></i></a></td>
+                </tr>
+                <tr>
+                  <td>20-02-2018</td>
+                  <td>#keamanan</td>
+                  <td><a href><i class="fa fa-file"></i></a></td>
+                </tr>
+                <tr>
+                  <td>17-02-2018</td>
+                  <td>#narkoba</td>
+                  <td><a href><i class="fa fa-file"></i></a></td>
+                </tr>
+                <tr>
+                  <td>12-02-2018</td>
+                  <td>#plgrnbatas</td>
+                  <td><a href><i class="fa fa-file"></i></a></td>
+                </tr>
+              </tbody>
             </table>
           </div>
+        
         </div>
       </div>
     </div>
+
+    
     <div id="map"></div>
+
   </div>
 
   <!-- <div id="map"></div>    -->
@@ -174,6 +308,8 @@
   <!-- leaflet grouplayer -->
   <script src="aset/bootleaf/leaflet.groupedlayercontrol.js"></script>
 
+  <!-- wind -->
+  <script src="aset/wind-js-leaflet.js"></script>
 
   <!-- leaflet control locate -->
   <!-- <script src="aset/bootleaf/L.Control.Locate.min.js"></script> -->
@@ -242,7 +378,10 @@
   <!-- bootstrap -->
   <script src="aset/bootstrap.min.js"></script>
 
-  <!-- <script src="aset/bootleaf/app.js"></script> -->
+  <!-- JSONjs -->
+  <script src="aset/JSONjs/json2.js"></script>
+
+  <!-- MAP ASLI -->
   <script src="aset/ResilientMaps.js"></script>
 
 </body>

@@ -1,64 +1,83 @@
-function IsJsonString(str) {try {JSON.parse(str)}catch (e) {return false}return true}
-
-// MAP LAIN MAP LAIN MAP LAIN MAP LAIN MAP LAIN
-// MAP LAIN MAP LAIN MAP LAIN MAP LAIN MAP LAIN
-// MAP LAIN MAP LAIN MAP LAIN MAP LAIN MAP LAIN
-// var Esri_OceanBasemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {maxZoom: 13});
-var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {maxZoom: 19});
-var standard = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18,});
-var primar = L.tileLayer.wms("http://primar.ecc.no/primar/wms_session", {    layers: 'cells',    format: 'image/png',    noWrap: true,    transparent: true    });
-var navtoniv = L.tileLayer('https://backend.navionics.io/tile/{z}/{x}/{y}?LAYERS=config_1_20.00_1&TRANSPARENT=FALSE&UGC=TRUE&navtoken=eyJrZXkiOiJOYXZpb25pY3NfaW50ZXJuYWxwdXJwb3NlXzAwMDAxIiwia2V5RG9tYWluIjoid2ViYXBwLm5hdmlvbmljcy5jb20iLCJyZWZlcmVyIjoid2ViYXBwLm5hdmlvbmljcy5jb20iLCJyYW5kb20iOjM2Mjc4fQ');
-  
-var gray = L.esri.basemapLayer('Gray');//.addTo(map);
-var streets = L.esri.basemapLayer('Streets');//.addTo(map);
-var topo = L.esri.basemapLayer('Topographic');//.addTo(map);
-var nationalgeo = L.esri.basemapLayer('NationalGeographic');//.addTo(map);
-var ocean = L.esri.basemapLayer('Oceans');//.addTo(map);
-var darkgray = L.esri.basemapLayer('DarkGray');//.addTo(map);
-var image = L.esri.basemapLayer('Imagery');//.addTo(map);
-var shade = L.esri.basemapLayer('ShadedRelief');//.addTo(map);
-var terain = L.esri.basemapLayer('Terrain');//.addTo(map);
-var usa = L.esri.basemapLayer('USATopo');//.addTo(map);
-
-// var mid = L.esri.Vector.basemap('MidCentury');//.addTo(map);
-// var news = L.esri.Vector.basemap('Newspaper');//.addTo(map);
-// var spring = L.esri.Vector.basemap('Spring');//.addTo(map);
-
-var dishidros = L.esri.dynamicMapLayer({url: 'http://hdc.pushidrosal.id/arcgis/rest/services/enc_indonesia/MapServer/exts/MaritimeChartService/MapServer', opacity: 0.6, f:'image'});
-// var topoindo = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.go.id/arcgis/rest/services/enc_indonesia/MapServer/exts/Maritime%20Chart%20Service/MapServer', opacity: 0.6, f:'image'});
-var topoindo = L.tileLayer('https://a.tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=a5dd6a2f1c934394bce6b0fb077203eb', {maxZoom: 19});
-
-// list of topologi map from opencycle free
-// https://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png
-// https://a.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png
-// https://a.tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png
-// https://a.tile.thunderforest.com/landscape/{z}/{x}/{y}.png
-// https://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png
-// https://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png
+// THE ULTIMATE MAPS OF RESILIENT
+// Author / creator   : GOPAL (Naufal El Farisi M) 
+// Contact            : naufalelfarisim@gmail.com 
+// Email              : 085659360489 
+// Lama Pengerjaan    : 2017-2018
 
 
-var udaraindo= L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.go.id/arcgis/rest/services/enc_indonesia/MapServer/exts/Maritime%20Chart%20Service/MapServer', opacity: 0.6, f:'image'});
-// var dishidrost = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.go.id/arcgis/rest/services/enc_indonesia/MapServer/exts/Maritime%20Chart%20Service/MapServer', opacity: 0.6, 
-//   f:'image', format:'jpeg', frames_on:false, 
-//   display_params:{"ECDISParameters":{"version":"1.0","StaticParameters":{"Parameter":[{"name":"AreaSymbolizationType","value":2},{"name":"PointSymbolizationType","value":2}]},"DynamicParameters":{"Parameter":[{"name":"ColorScheme","value":1},{"name":"DisplayDepthUnits","value":1},{"name":"TwoDepthShades","value":1},{"name":"DisplayNOBJNM","value":2},{"name":"HonorScamin","value":2},{"name":"ShallowDepthPattern","value":1},{"name":"ShallowContour","value":2},{"name":"SafetyContour","value":10},{"name":"DeepContour","value":30},{"name":"DisplayCategory","value":"1,2,4"}]}}}
-// });
+// GLOBAL VARIABLE
+var map; 
+var dishidros,ais,kkp,rapingla,migas,pasut;
+var overlays, baseMaps, bsm, layerControl1, layerControl2, layerControl3, layerControl4;
+var tik, terline1,terline2,terline3,terline4, pklline1,pklline2,pklline3, tmbline1,tmbline2,tmbline3,tmbline4,tmbline5, zeeline1,zeeline2,zeeline3,zeeline4,zeeline5,zeeline6;
+var teri, zee, tmbline, pklline, konline, stline, tk1, tk2;
+var gempa,tekanan,awan,suhu,hujan;
+var ikanpari,ikanbiru,ikanmerah,ikanoren,ikanpink,ikanhiu,ikanpaus,kepitingicon,udangicon,cumiicon,lobstericon,gmpaIcon,aiscon,buletabu,buletdefault,bulethijau,bulethitam,buletkuning,buletmerah,buletputih,bulettransp,buletungu;
 
-var migas = L.esri.dynamicMapLayer({url: 'http://webgis.den.go.id/arcgis/rest/services/Pipa_Hulu_Migas/MapServer', opacity: 0.9, f:'image'});
-var rapingla = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.tnial.mil.id/arcgis/rest/services/raplingla/MapServer', opacity: 0.7, f:'image'});
-var pasut = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.tnial.mil.id/arcgis/rest/services/Pasut/MapServer', opacity: 0.7, f:'image'});
+//CONFIG IP AJAX
+var URLAPI        = 'http://192.168.1.241:9099/api/';
+var URLINTELBOT   = URLAPI+'rawpesans';
+var URLTK1        = 'json/tk1ori.json';
+var URLTK2        = 'json/tk2ori.json';
+var URLCUACABASE  = "../getcuaca/bin/hasil/"; 
+var URLBATASLINE  = 'json/batasline.json';
+var URLIKAN       = 'json/ikan.json';
+var URLWINDBASE   = 'http://192.168.1.124:7000/';
 
-var kkp = L.esri.dynamicMapLayer({
-  url: 'http://www.ppk-kp3k.kkp.go.id/ArcGIS/rest/services/kkp/Kawasan/MapServer', 
-  opacity: 1,
-  useCors : false,
-  f:'image'
-});
 
-// var ais = L.esri.featureLayer({
-var ais = L.esri.Cluster.featureLayer({
-    url: 'http://geoeventsample1.esri.com:6080/arcgis/rest/services/Hosted/exactEarthCurrent/FeatureServer/0',
-    opacity:1,
-    pointToLayer: //setInterval(function(geojson, latlng){
+// FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION
+// FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION
+// FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION FUNCTION
+function INITMAP(){
+    // MAP SOURCE MAP SOURCE MAP SOURCE MAP SOURCE MAP SOURCE
+    var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {maxZoom: 19});
+    var standard = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18,});
+    var primar = L.tileLayer.wms("http://primar.ecc.no/primar/wms_session", {    layers: 'cells',    format: 'image/png',    noWrap: true,    transparent: true    });
+    var navtoniv = L.tileLayer('https://backend.navionics.io/tile/{z}/{x}/{y}?LAYERS=config_1_20.00_1&TRANSPARENT=FALSE&UGC=TRUE&navtoken=eyJrZXkiOiJOYXZpb25pY3NfaW50ZXJuYWxwdXJwb3NlXzAwMDAxIiwia2V5RG9tYWluIjoid2ViYXBwLm5hdmlvbmljcy5jb20iLCJyZWZlcmVyIjoid2ViYXBwLm5hdmlvbmljcy5jb20iLCJyYW5kb20iOjM2Mjc4fQ');
+    var gray = L.esri.basemapLayer('Gray');//.addTo(map);
+    var streets = L.esri.basemapLayer('Streets');//.addTo(map);
+    var topo = L.esri.basemapLayer('Topographic');//.addTo(map);
+    var nationalgeo = L.esri.basemapLayer('NationalGeographic');//.addTo(map);
+    var ocean = L.esri.basemapLayer('Oceans');//.addTo(map);
+    var darkgray = L.esri.basemapLayer('DarkGray');//.addTo(map);
+    var image = L.esri.basemapLayer('Imagery');//.addTo(map);
+    var shade = L.esri.basemapLayer('ShadedRelief');//.addTo(map);
+    var terain = L.esri.basemapLayer('Terrain');//.addTo(map);
+    var usa = L.esri.basemapLayer('USATopo');//.addTo(map);
+    // var Esri_OceanBasemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {maxZoom: 13});
+    // var mid = L.esri.Vector.basemap('MidCentury');//.addTo(map);
+    // var news = L.esri.Vector.basemap('Newspaper');//.addTo(map);
+    // var spring = L.esri.Vector.basemap('Spring');//.addTo(map);
+    // var dishidros = L.esri.dynamicMapLayer({url: 'http://hdc.pushidrosal.id/arcgis/rest/services/enc_indonesia/MapServer/exts/MaritimeChartService/MapServer', opacity: 0.6, f:'image'});
+    // var dishidros = L.esri.dynamicMapLayer({url: 'http://hdc.pushidrosal.id/arcgis/rest/services/SampleWorldCities/MapServer/exts/MaritimeChartService/MapServer', opacity: 0.6, f:'image'});
+    dishidros = L.esri.dynamicMapLayer({url: 'http://hdc.pushidrosal.id/arcgis/rest/services/SampleWorldCities/MapServer/exts/MaritimeChartService/MapServer', opacity: 0.6, f:'image', layers: [0,2,3,4,5,6,7,8,9,10]});
+    //layer.show:
+    // 0 = kotak batas
+    // 1 = land & rambu2 pulau kecil
+    // 2 = angka2 kedalaman laut
+    // 3 = garis ungu jalur pelayaran
+    // 4 = rambu2 bundar ungu
+    // 5 = rambu2 ungu lainnnya
+    // 6 = mercusuar dan lingkaranya
+    // 7 = garis ungu batas pulau
+    // 8 = garis2 ungu
+    // 9 = 
+    // var topoindo = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.go.id/arcgis/rest/services/enc_indonesia/MapServer/exts/Maritime%20Chart%20Service/MapServer', opacity: 0.6, f:'image'});
+    var topoindo = L.tileLayer('https://a.tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=a5dd6a2f1c934394bce6b0fb077203eb', {maxZoom: 19});
+    // list of topologi map from opencycle free
+    // https://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png
+    // https://a.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png
+    // https://a.tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png
+    // https://a.tile.thunderforest.com/landscape/{z}/{x}/{y}.png
+    // https://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png
+    // https://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png
+    var udaraindo= L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.go.id/arcgis/rest/services/enc_indonesia/MapServer/exts/Maritime%20Chart%20Service/MapServer', opacity: 0.6, f:'image'});
+    migas = L.esri.dynamicMapLayer({url: 'http://webgis.den.go.id/arcgis/rest/services/Pipa_Hulu_Migas/MapServer', opacity: 0.9, f:'image'});
+    rapingla = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.tnial.mil.id/arcgis/rest/services/raplingla/MapServer', opacity: 0.7, f:'image'});
+    pasut = L.esri.dynamicMapLayer({url: 'http://hdc.dishidros.tnial.mil.id/arcgis/rest/services/Pasut/MapServer', opacity: 0.7, f:'image'});
+    kkp = L.esri.dynamicMapLayer({url: 'http://www.ppk-kp3k.kkp.go.id/ArcGIS/rest/services/kkp/Kawasan/MapServer', opacity: 1,useCors : false,f:'image'});
+    ais = L.esri.Cluster.featureLayer({url: 'http://geoeventsample1.esri.com:6080/arcgis/rest/services/Hosted/exactEarthCurrent/FeatureServer/0',opacity:1,pointToLayer: 
+    // ais = L.esri.Cluster.featureLayer({url: 'json/gempa.json',opacity:1,pointToLayer: 
       function (geojson, latlng){   
         console.log(geojson);
         return L.marker(latlng, {rotationAngle: geojson.properties.cog, icon: aiscon})
@@ -93,148 +112,632 @@ var ais = L.esri.Cluster.featureLayer({
                       "</tr><tr>"+
                       "<td> Lebar </td><td>: "+geojson.properties.width+" m</td>"+
                       "</tr></table>"
-                      );
+            );
       }
-    // }, 5000)
-});
+    });
+
+    // LAYERCONTROL
+    baseMaps = {
+      "Navtonic": navtoniv,
+      "Black": CartoDB_DarkMatter,
+      "OSM Standard": standard,
+      "Gray": gray, 
+      "Streets": streets,
+      "Topo": topo,
+      "NatGeo": nationalgeo,
+      "Ocean": ocean,
+      "DarkGry": darkgray,
+      "Imagy": image,
+      "Shade": shade,
+      "Terain": terain,
+      "USA topo": usa,
+      "TNI AD":topoindo
+      // "Mid": mid,
+      // "Spring" : spring,
+      // "News": news
+    };
+
+    bsm = {
+      "Open Street": standard,
+      "Streets": streets,
+      "Topo": topo,
+      "NatGeo": nationalgeo,
+      "Ocean": ocean,
+      "Imagy": image,
+      "Shade": shade,
+      // "Gray": gray, 
+      // "DarkGry": darkgray,
+      // "Black": CartoDB_DarkMatter,
+      // "Terain": terain
+      // "USA topo": usa
+      // "Mid": mid,
+      // "Spring" : spring,
+      // "News": news
+    };
+
+    var configMap = {
+            //indonesia
+            latCenter : 6-(6-(-11))/2,
+            lonCenter : 95+(141-95)/2,
+            zoom :5,
+
+            //bandung
+            // latCenter : -6.910,
+            // lonCenter : 107.622,
+            // zoom :12,
+
+            mapUrl : 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            mapStyleId : 22677
+    };
+
+    map = new L.map('map', {
+      // drawControl: true,
+      center: [configMap.latCenter, configMap.lonCenter],
+      zoom: configMap.zoom,
+      layers: [standard],
+      maxZoom : 18,
+      minZoom : 3
+      // worldCopyJump : true
+    });
+}
 
 
+function INITICON(){
+    ikanpari = L.icon({iconUrl: 'aset/img/paripari.png', iconSize: [40,40], iconAnchor:[20,20]});
+    ikanbiru = L.icon({iconUrl: 'aset/img/ikanbiru.png', iconSize: [40,40], iconAnchor:[20,20]});
+    ikanmerah = L.icon({iconUrl: 'aset/img/ikanmerah.png', iconSize: [40,40], iconAnchor:[20,20]});
+    ikanoren = L.icon({iconUrl: 'aset/img/ikanoren.png', iconSize: [40,40], iconAnchor:[20,20]});
+    ikanpink = L.icon({iconUrl: 'aset/img/ikanpink.png', iconSize: [40,40], iconAnchor:[20,20]});
+    ikanhiu = L.icon({iconUrl: 'aset/img/hiuhiu.png', iconSize: [40,40], iconAnchor:[20,20]});
+    ikanpaus = L.icon({iconUrl: 'aset/img/pauspaus.png', iconSize: [40,40], iconAnchor:[20,20]});
+    kepitingicon = L.icon({iconUrl: 'aset/img/kepiting.png', iconSize: [40,40], iconAnchor:[20,20]});
+    udangicon = L.icon({iconUrl: 'aset/img/udangudang.png', iconSize: [40,40], iconAnchor:[20,20]});
+    cumiicon = L.icon({iconUrl: 'aset/img/cumicumi.png', iconSize: [40,40], iconAnchor:[20,20]});
+    lobstericon = L.icon({iconUrl: 'aset/img/lobterlobster.png', iconSize: [40,40], iconAnchor:[20,20]});
+    gmpaIcon = L.icon({iconUrl: 'aset/img/epic.gif', iconSize: [50,50], iconAnchor:[25,25]});
+    aiscon = L.icon({iconUrl: 'aset/img/v.png', iconSize: [24,24], iconAnchor:[12,12]});
+    buletabu = L.icon({iconUrl: 'aset/img/iconabu.png', iconSize: [12,12], iconAnchor:[6,6]});
+    buletdefault = L.icon({iconUrl: 'aset/img/icondefault.png', iconSize: [12,12], iconAnchor:[6,6]});
+    bulethijau = L.icon({iconUrl: 'aset/img/iconhijau.png', iconSize: [12,12], iconAnchor:[6,6]});
+    bulethitam = L.icon({iconUrl: 'aset/img/iconhitam.png', iconSize: [12,12], iconAnchor:[6,6]});
+    buletkuning = L.icon({iconUrl: 'aset/img/iconkuning.png', iconSize: [12,12], iconAnchor:[6,6]});
+    buletmerah = L.icon({iconUrl: 'aset/img/iconmerah.png', iconSize: [12,12], iconAnchor:[6,6]});
+    buletputih = L.icon({iconUrl: 'aset/img/iconputih.png', iconSize: [12,12], iconAnchor:[6,6]});
+    bulettransp = L.icon({iconUrl: 'aset/img/icontransp.png', iconSize: [12,12], iconAnchor:[6,6]});
+    buletungu = L.icon({iconUrl: 'aset/img/iconungu.png', iconSize: [12,12], iconAnchor:[6,6]});
+}
+
+
+function INITPLUGIN(){
+    // LEAFLET search
+    map.addControl( new L.Control.Search({
+        url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
+        jsonpParam: 'json_callback',
+        propertyName: 'display_name',
+        propertyLoc: ['lat','lon'],
+        marker: L.circleMarker([0,0],{radius:20}),
+        // autoCollapse: true,
+        autoType: false,
+        position: 'topright',
+        collapsed: false,
+        // autoCollapse: false,
+        // hideMarkerOnCollapse: true,
+        minLength: 2
+      }) );
+
+    //LEAFLET attribution
+    var attrib = new L.Control.Attribution;
+    map.addControl(attrib); 
+    attrib.setPrefix('Koordinat : ');
+    map.on('mousemove', function(e) {
+      attrib.setPrefix('Koordinat : '+e.latlng.lat+", "+e.latlng.lng+'. Zoom:'+map.getZoom()+'. Created by Gopal, 2017');
+    });
+
+    //LEAFLET scale nautica
+    map.addControl(new L.Control.ScaleNautic({
+        // position: 'bottomleft',
+        metric: true,
+        imperial: true,
+        nautic: true
+    }));
+}
+
+
+function INITANGIN(){
+    // var layerControl = L.control.layers(bsm).addTo(map);
+    var layerControl = L.control.layers().addTo(map);
+    var handleError = function(err){
+        console.log('handleError...');
+        console.log(err);
+    };
+    WindJSLeaflet.init({ 
+        localMode: true,                                 // use a local data file to test before hitting a real wind-js-server
+        map: map,                                       // ref to your leaflet Map
+        layerControl: layerControl,                    // ref to your leaflet layer control
+        useNearest: false,                              // get nearest data to your ISO time string
+        timeISO: null,                                  // your ISO time string, falls back to current time (can also use WindJsLeaflet.setTime(time))
+        nearestDaysLimit: 7,                            // the maximum range (±) to look for data 
+        displayValues: true,                              // whether or not to add a mouseover control to display values
+        displayOptions: {
+           position: 'bottomright',               // leaflet control position
+           displayEmptyString: 'No wind data'           // what to display in mouseover control when no data
+        },
+        overlayName: 'wind',                            // string to display for the overlay in your layer control
+        pingUrl: URLWINDBASE+'alive',        // url to check service availability
+        latestUrl: URLWINDBASE+'latest',     // url to get latest data with no required params   
+        nearestUrl: URLWINDBASE+'nearest',   // url to get data nearest a specified time ISO 
+        errorCallback: handleError
+    });  
+}
+
+
+function INITCUACAGEMPA(){
+    var listGempa = [];
+    gempa = L.layerGroup(listGempa);
+    var bmkg, tekananUrl, suhuUrl, hujanUrl, awanUrl;
+
+    var dt = new Date();
+    var ss = dt.getHours();
+    var k;  // j for windyty data,, k for sadewa data
+
+      // // windyty update data tiap 3 jam sekali sesuai jam windyty (rusia).. sadewa update data 1 jam sekali
+      switch(ss) {
+          case 0:k = "17";break;
+          case 1:k = "18";break;
+          case 2:k = "19";break;
+          case 3:k = "20";break;
+          case 4:k = "21";break;
+          case 5:k = "22";break;
+          case 6:k = "23";break;
+          case 7:k = "00";break;
+          case 8:k = "01";break;
+          case 9:k = "02";break;
+          case 10:k = "03";break;
+          case 11:k = "04";break;
+          case 12:k = "05";break;
+          case 13:k = "06";break;     
+          case 14:k = "07";break;
+          case 15:k = "08";break;
+          case 16:k = "09";break;
+          case 17:k = "10";break;
+          case 18:k = "11";break;
+          case 19:k = "12";break;
+          case 20:k = "13";break;
+          case 21:k = "14";break;
+          case 22:k = "15";break;
+          case 23:k = "16";break;
+      }
+
+    tekananUrl = URLCUACABASE+'psf_'+k+'.png';
+    suhuUrl = URLCUACABASE+'sst_'+k+'.png';
+    hujanUrl = URLCUACABASE+'rain_'+k+'.png';
+    awanUrl = URLCUACABASE+'cloud_'+k+'.png';
+    bmkg = URLCUACABASE+"gempaterkini.xml"; 
+    // var bmkg = bas+"gempaauto.xml";
+
+      //init data sadewa
+      var smBounds = [[-10.0, 95.0], [10.0, 145.0]];
+      var lgBounds = [[70.0, 70.0], [-70.0, 210.0]];
+
+      awan =L.imageOverlay(awanUrl, smBounds);
+      tekanan =L.imageOverlay(tekananUrl, smBounds);
+      suhu =L.imageOverlay(suhuUrl, smBounds);
+      hujan =L.imageOverlay(hujanUrl, smBounds);
+
+
+    var tgl,jam,lat,lon,mag,ked,wil,pot,cek7hr;
+    var koor = [];
+
+    $.ajax({
+      type: 'GET',        
+      url: bmkg,
+      dataType: "xml",
+      success:function(xml){
+        $(xml).find('Infogempa').each(function(){
+          $(this).find("gempa").each(function(){
+
+            info = $(this).text(); 
+            $(this).find("Tanggal").each(function(){
+              tgl = $(this).text();                   
+              var d = new Date();
+              d.setDate(d.getDate() - 7); // disini diset brp hari yg lalu, misal 7 hari yg lalu jadinya - 7
+              if (d - new Date(tgl) <= 0){cek7hr = true} else cek7hr = false;
+            });
+            $(this).find("Jam").each(function(){jam = $(this).text()});
+            $(this).find("point").each(function(){
+              $(this).find("coordinates").each(function(){koor = $(this).text().split(",")}); 
+            });
+            $(this).find("Lintang").each(function(){lat = $(this).text()});
+            $(this).find("Bujur").each(function(){lon = $(this).text()});
+            $(this).find("Magnitude").each(function(){mag = $(this).text()});
+            $(this).find("Kedalaman").each(function(){ked = $(this).text()});
+            $(this).find("Wilayah").each(function(){wil = $(this).text()}); 
+            
+            // cek ini 2hr lalu ga?
+            if (cek7hr){
+              // bikin icon
+              var gmpa = L.marker([koor[1],koor[0]], {icon: gmpaIcon})
+                .bindTooltip("<table  style='font-size:10px'><tr>"+
+                              "<td>Tanggal </td><td>: "+tgl+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Jam </td><td>: "+jam+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Lintang </td><td>: "+lat+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Bujur </td><td>: "+lon+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Magnitude </td><td>: "+mag+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Kedalaman </td><td>: "+ked+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Wilayah </td><td>: "+wil+"</td>"+
+                            "</tr></table>",
+                    {opacity:0.8, sticky:true});
+              listGempa.push(gmpa);                   
+            }// end of cek (if)
+
+          });
+        });
+        gempa = L.layerGroup(listGempa);
+      }
+    }); 
+}
+
+
+function INITBATAS(){
+    teri = L.layerGroup();
+    zee = L.layerGroup();
+    tmbline = L.layerGroup();
+    pklline = L.layerGroup();
+    tk1 = L.layerGroup();
+    tk2 = L.layerGroup();
+
+    // batas Wilayah Daerah Tingkat 2 (kotamadya/kabupaten)
+    $.ajax({
+      type: 'GET',        
+      url: URLTK2,        
+      success:function(response){
+          // console.log(response);
+          var linetk2;
+          for(var i=0; i<response.data.length; i++){
+              // var titiktkdua=[];
+              // console.log(response.data[i].geometry);
+              if(response.data[i].geometry.type == "MultiPolygon"){ //multipolygon
+                  var titiktkduaMP=[];
+                  // console.log("multipolygon");
+                  for(var ii=0; ii<response.data[i].geometry.coordinates.length; ii++){
+                      // console.log(response.data[i].geometry.coordinates[ii].length);
+                      var buff=[];
+                      for(var iii=0; iii<response.data[i].geometry.coordinates[ii][0].length; iii++){
+                          tik = new L.LatLng(response.data[i].geometry.coordinates[ii][0][iii][1], response.data[i].geometry.coordinates[ii][0][iii][0]); 
+                          buff.push(tik);
+                      }
+                      titiktkduaMP.push(buff);
+                      // disini gakuat, ramnya ga cukup terus
+                      // linetk2 = new L.polygon(titiktkdua, {color: "#7700ff", weight: 1, opacity: 1, smoothFactor: 1}).bindTooltip('batas teritorial').addTo(map);
+                  }
+                  // disini banyak nyilang
+                  linetk2 = new L.polygon(titiktkduaMP, {color: "green", weight: 1.5, opacity: 1, smoothFactor: 1})
+                  // .bindTooltip('batas teritorial').addTo(map);
+                  .bindTooltip("<table  style='font-size:11px'><tr>"+
+                              "<td>Nama </td><td>: "+response.data[i].properties.NAME_2+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Tipe </td><td>: "+response.data[i].properties.TYPE_2+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Kode </td><td>: "+response.data[i].properties.HASC_2+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Provinsi </td><td>: "+response.data[i].properties.NAME_1+"</td>"+
+                            "</tr></table>",
+                    {opacity:0.8, sticky:true});//.addTo(map);
+              } else if(response.data[i].geometry.type == "Polygon"){ //polygon
+                  var titiktkduaP=[];
+                  // console.log("polygon")
+                  for(var ii=0; ii<response.data[i].geometry.coordinates[0].length; ii++){
+                      tik = new L.LatLng(response.data[i].geometry.coordinates[0][ii][1], response.data[i].geometry.coordinates[0][ii][0]); 
+                      titiktkduaP.push(tik);
+                  }
+                  linetk2 = new L.polygon(titiktkduaP, {color: "green", weight: 1.5, opacity: 1, smoothFactor: 1})
+                  // .bindTooltip("<table  style='font-size:10px'><tr>"+
+                  .bindTooltip("<table  style='font-size:11px'><tr>"+
+                              "<td>Nama </td><td>: "+response.data[i].properties.NAME_2+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Tipe </td><td>: "+response.data[i].properties.TYPE_2+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Kode </td><td>: "+response.data[i].properties.HASC_2+"</td>"+
+                            "</tr><tr>"+
+                              "<td>Provinsi </td><td>: "+response.data[i].properties.NAME_1+"</td>"+
+                            "</tr></table>",
+                    {opacity:0.8, sticky:true});//.addTo(map);
+              }
+              tk2.addLayer(linetk2);
+
+              // simple dan gampang kalau datanya udh bener
+              // linetk2 = new L.polygon(response.data[i].geometry.coordinates, {color: "#7700ff", weight: 1, opacity: 1, smoothFactor: 1}).bindTooltip('batas teritorial').addTo(map);
+              // tk2.addLayer(linetk2);
+          }
+          console.log("beres iterasi tk2");
+          // console.log(tk2);
+          
+      }
+    }) // end of ajax
+
+
+    // batas Wilayah Daerah Tingkat 1 (provinsi)
+    $.ajax({
+      type: 'GET',
+      url: URLTK1,
+      success:function(response){
+          // console.log(response);
+          var linetk1;
+          for(var i=0; i<response.data.length; i++){
+              // console.log(response.data[i].properties);
+              var titiktksatuMP=[];
+              for(var ii=0; ii<response.data[i].geometry.coordinates.length; ii++){
+                  var buff=[];
+                  for(var iii=0; iii<response.data[i].geometry.coordinates[ii][0].length; iii++){
+                      tik = new L.LatLng(response.data[i].geometry.coordinates[ii][0][iii][1], response.data[i].geometry.coordinates[ii][0][iii][0]); 
+                      buff.push(tik);
+                  }
+                  titiktksatuMP.push(buff);
+              }
+              linetk1 = new L.polygon(titiktksatuMP, {color: "blue", weight: 3, opacity: 1, smoothFactor: 1})
+              // .bindTooltip('batas teritorial').addTo(map);
+                .bindTooltip("<table  style='font-size:11px'><tr>"+
+                          "<td>Nama </td><td>: "+response.data[i].properties.VARNAME_1+"</td>"+
+                        "</tr><tr>"+
+                          "<td>Tipe </td><td>: "+response.data[i].properties.ENGTYPE_1+" / "+response.data[i].properties.TYPE_1+"</td>"+
+                        "</tr><tr>"+
+                          "<td>Kode </td><td>: "+response.data[i].properties.HASC_1+"</td>"+
+                        "</tr><tr>"+
+                          "<td>Nama Provinsi </td><td>: "+response.data[i].properties.NAME_1+"</td>"+
+                        "</tr></table>",
+                {opacity:0.8, sticky:true});//.addTo(map);
+              tk1.addLayer(linetk1);
+          }
+          console.log("beres iterasi tk1");
+          // console.log(tk1);
+          
+      }
+    }) // end of ajax
+
+
+    // batas Negara / Teritorial
+    $.ajax({
+      type: 'GET',        
+      url: URLBATASLINE,        
+      success:function(response){
+        // console.log('batas',response);
+        var teritorialList1 =[]; var teritorialList2 =[]; var teritorialList3 =[]; var teritorialList4 =[];
+        var pangkalList1 = []; var pangkalList2 = []; var pangkalList3 = [];
+        var tambahanList1 = []; var tambahanList2 = []; var tambahanList3 = []; var tambahanList4 = []; var tambahanList5 = [];
+        var zeeList1 = []; var zeeList2 = []; var zeeList3 = []; var zeeList4 = []; var zeeList5 = []; var zeeList6 = [];
+        var kontinenList = []; var stList = [];         
+
+        for (i = 0; i < response.features.length; i++) { 
+          for (ii = 0; ii < response.features[i].latlon.length; ii++) { 
+            if (response.features[i].tag == "ter1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList1.push(tik); }
+            if (response.features[i].tag == "ter2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList2.push(tik); }
+            if (response.features[i].tag == "ter3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList3.push(tik); }
+            if (response.features[i].tag == "ter4"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList4.push(tik); }
+
+            if (response.features[i].tag == "pkl1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); pangkalList1.push(tik); }
+            if (response.features[i].tag == "pkl2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); pangkalList2.push(tik); }
+            if (response.features[i].tag == "pkl3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); pangkalList3.push(tik); }
+
+            if (response.features[i].tag == "tmb1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList1.push(tik); }
+            if (response.features[i].tag == "tmb2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList2.push(tik); }
+            if (response.features[i].tag == "tmb3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList3.push(tik); }
+            if (response.features[i].tag == "tmb4"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList4.push(tik); }
+            if (response.features[i].tag == "tmb5"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList5.push(tik); }
+
+            if (response.features[i].tag == "zee1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList1.push(tik); }
+            if (response.features[i].tag == "zee2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList2.push(tik); }
+            if (response.features[i].tag == "zee3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList3.push(tik); }
+            if (response.features[i].tag == "zee4"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList4.push(tik); }
+            if (response.features[i].tag == "zee5"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList5.push(tik); }
+            if (response.features[i].tag == "zee6"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList6.push(tik); }
+
+            if (response.features[i].tag == "kon"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); kontinenList.push(tik); }
+            if (response.features[i].tag == "197"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); stList.push(tik); }         
+          }
+        }
+        
+        terline1 = new L.polyline(teritorialList1, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
+        terline2 = new L.polyline(teritorialList2, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
+        terline3 = new L.polyline(teritorialList3, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
+        terline4 = new L.polyline(teritorialList4, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
+
+        pklline1 = new L.polyline(pangkalList1, {color: 'red', weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('garis pangkal', { noHide: true }); //.addTo(map);
+        pklline2 = new L.polyline(pangkalList2, {color: 'red', weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('garis pangkal', { noHide: true }); //.addTo(map);
+        pklline3 = new L.polyline(pangkalList3, {color: 'red', weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('garis pangkal', { noHide: true }); //.addTo(map);
+
+        tmbline1 = new L.polyline(tambahanList1, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
+        tmbline2 = new L.polyline(tambahanList2, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
+        tmbline3 = new L.polyline(tambahanList3, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
+        tmbline4 = new L.polyline(tambahanList4, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
+        tmbline5 = new L.polyline(tambahanList5, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
+
+        zeeline1 = new L.polyline(zeeList1, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
+        zeeline2 = new L.polyline(zeeList2, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
+        zeeline3 = new L.polyline(zeeList3, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
+        zeeline4 = new L.polyline(zeeList4, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
+        zeeline5 = new L.polyline(zeeList5, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
+        zeeline6 = new L.polyline(zeeList6, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
+
+        konline = new L.polyline(kontinenList, {color: "#2E9AFE", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('landas kontinent', { noHide: true }); //.addTo(map);
+        stline = new L.polyline(stList, {color: "#0901ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('perjanjian 1997', { noHide: true }); //.addTo(map);
+
+        teri = L.layerGroup([terline1, terline2, terline3, terline4]);
+        zee = L.layerGroup([zeeline1, zeeline2, zeeline3, zeeline4, zeeline5, zeeline6]);
+        tmbline = L.layerGroup([tmbline1, tmbline2, tmbline3, tmbline4, tmbline5]);
+        pklline = L.layerGroup([pklline1, pklline2, pklline3]);
+        // tk1 = L.layerGroup([]);
+        // tk2 = L.layerGroup([]);
+        
+    
+        //masukin semua overlays disini
+        overlays = {
+            // "Batas Wilayah":{
+              // "<font color='#2E9AFE'>Landas Kontinent</font>": konline, 
+              // "<font color='#0901ff'>Perjanjian 1997</font>": stline, 
+              "<font color='red'>Garis Batas</font>": pklline,
+              "<font color='#7700ff'>Teritorial</font>": teri,
+              "<font color='#DBA901'>Zona Plus</font>": tmbline, 
+              "<font color='#088A08'>ZEE</font>": zee,
+              "<font color='blue'>Tingkat 1</font>": tk1,
+              "<font color='green'>Tingkat 2</font><br><br><b>Peta Tambahan :</b>": tk2,
+            // },
+            // "Peta Tambahan":{
+              "Dishidros" : dishidros,
+              // "DishidrosT" : dishidrost,
+              "AIS": ais,
+              "KKP wilayah" : kkp,
+              "Hulu Migas" : migas,
+              "Rapingla" : rapingla,
+              "Pasut <br><br><b>Cuaca & Gempa:</b>" : pasut,
+            // },
+            // "Cuaca & Gempa":{
+              "Gempa 7hr": gempa,
+              "Tekanan": tekanan,
+              "Awan": awan,
+              "Suhu": suhu,
+              "Hujan": hujan
+            // }
+        };
+
+        layerControl1 = L.control.layers(baseMaps, overlays).addTo(map);
+        //layerControl3 = L.control.groupedLayers(null,ikan, {position:'topright'}).addTo(map);
+      },
+      error: function() {
+        console.log("Error json request"); 
+        window.confirm("Data batas gagal diload");
+      }
+    }); 
+}
+
+
+function INITLAPORANPERSONEL(){
+    //laporan
+    var lapor3= L.layerGroup([]),lapor7= L.layerGroup([]),lapor30= L.layerGroup([]),lapor365= L.layerGroup([]);
+    $.ajax({
+      type: 'GET',        
+      url: URLINTELBOT+'/filter/last3day',        
+      success:function(lapor){
+        console.log(lapor);
+        for(var i=0; i<lapor.data.length; i++){
+          var mark = L.marker([lapor.data[i].lokasi.latitude, lapor.data[i].lokasi.longitude], {icon:buletmerah})
+              .bindTooltip("<table width=100% style='font-size:11px'><tr>"+
+                            "<td>Date </td><td>: "+lapor.data[i].date+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Kategori </td><td>: "+lapor.data[i].category+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Pengirim </td><td>: "+lapor.data[i].dari+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Lokasi </td><td>: "+lapor.data[i].lokasi.latitude+", "+lapor.data[i].lokasi.longitude+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Laporan </td><td>: "+lapor.data[i].laporan+"</td>"+
+                            "</tr></table>"                        
+                            ,{opacity:0.8, sticky:true});
+              lapor3.addLayer(mark);
+        }
+      }
+    });
+    $.ajax({
+      type: 'GET',        
+      url: URLINTELBOT+'/filter/lastweek',        
+      success:function(lapor){
+        console.log(lapor);
+        for(var i=0; i<lapor.data.length; i++){
+          var mark = L.marker([lapor.data[i].lokasi.latitude, lapor.data[i].lokasi.longitude], {icon:buletmerah})
+              .bindTooltip("<table width=100% style='font-size:11px'><tr>"+
+                            "<td>Date </td><td>: "+lapor.data[i].date+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Kategori </td><td>: "+lapor.data[i].category+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Pengirim </td><td>: "+lapor.data[i].dari+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Lokasi </td><td>: "+lapor.data[i].lokasi.latitude+", "+lapor.data[i].lokasi.longitude+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Laporan </td><td>: "+lapor.data[i].laporan+"</td>"+
+                            "</tr></table>"                        
+                            ,{opacity:0.8, sticky:true});                        
+              lapor7.addLayer(mark);
+        }
+      }
+    });
+    $.ajax({
+      type: 'GET',        
+      url: URLINTELBOT+'/filter/lastmonth',        
+      success:function(lapor){
+        console.log(lapor);
+        for(var i=0; i<lapor.data.length; i++){
+          var mark = L.marker([lapor.data[i].lokasi.latitude, lapor.data[i].lokasi.longitude], {icon:buletmerah})
+              .bindTooltip("<table width=100% style='font-size:11px'><tr>"+
+                            "<td>Date </td><td>: "+lapor.data[i].date+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Kategori </td><td>: "+lapor.data[i].category+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Pengirim </td><td>: "+lapor.data[i].dari+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Lokasi </td><td>: "+lapor.data[i].lokasi.latitude+", "+lapor.data[i].lokasi.longitude+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Laporan </td><td>: "+lapor.data[i].laporan+"</td>"+
+                            "</tr></table>"                        
+                            ,{opacity:0.8, sticky:true});
+              lapor30.addLayer(mark);
+        }
+      }
+    });
+    $.ajax({
+      type: 'GET',        
+      url: URLINTELBOT+'/filter/lastyear',        
+      success:function(lapor){
+        console.log(lapor);
+        for(var i=0; i<lapor.data.length; i++){
+          var mark = L.marker([lapor.data[i].lokasi.latitude, lapor.data[i].lokasi.longitude], {icon:buletmerah})
+              .bindTooltip("<table width=100% style='font-size:11px'><tr>"+
+                            "<td>Date </td><td>: "+lapor.data[i].date+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Kategori </td><td>: "+lapor.data[i].category+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Pengirim </td><td>: "+lapor.data[i].dari+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Lokasi </td><td>: "+lapor.data[i].lokasi.latitude+", "+lapor.data[i].lokasi.longitude+"</td>"+
+                            "</tr><tr>"+
+                            "<td>Laporan </td><td>: "+lapor.data[i].laporan+"</td>"+
+                            "</tr></table>"                        
+                            ,{opacity:0.8, sticky:true});
+              lapor365.addLayer(mark);
+        }
+      }
+    });
+
+    var resilient = {
+      "Laporan Keamanan":{
+        "3 days" : lapor3,
+        "1 week" : lapor7,
+        "1 month" : lapor30,
+        "1 year" : lapor365
+      // },
+      // "Personel":{
+      //   "<font color='#FFC100'> AS <i class='fa fa-star'></i></font> ": as,
+      //   "<font color='#FBFF00'> AD <i class='fa fa-star-half-o'></i></font>" : ad,
+      //   "<font color='#61FF00'> ME <i class='fa fa-star-o'></i></font>" : me,
+      //   "<font color='red'> Out <i class='fa fa-frown-o'></i></font>" : out,
+      }
+    };
+
+    layerControl4 = L.control.groupedLayers(null,resilient, {position:'topright'}).addTo(map);
+}
+
+INITICON();
+INITCUACAGEMPA();
+INITBATAS();
+INITMAP();
+INITPLUGIN();
+INITANGIN();
+INITLAPORANPERSONEL();
 /////////////////////
-
-var KRI, LANAL, SATGAS, MARINIR, PANGKALAN, LANUD,LANAD, KODAM, AJENDAM, BandaraM, BandaraS;
-KRI = L.layerGroup([]);
-LANAL = L.layerGroup([]);
-MARINIR = L.layerGroup([]);
-SATGAS = L.layerGroup([]);
-PANGKALAN = L.layerGroup([]);
-LANUD = L.layerGroup([]);
-LANAD = L.layerGroup([]);
-KODAM = L.layerGroup([]);
-AJENDAM = L.layerGroup([]);
-BandaraM = L.layerGroup([]);
-BandaraS = L.layerGroup([]);
-var tni = {
-	"Peta Militer":{
-		"Peta TNI AL" : dishidros,
-        "Peta TNI AD" : topoindo,
-        "Peta TNI AU" : udaraindo,
-	},
-	"Kekuatan TNI AL":{
-		"KRI": KRI,
-        "Lanal" : LANAL,
-        "Marinir" : MARINIR,
-        "Satgas" : SATGAS,
-	},
-	"Kekuatan TNI AD":{
-		"Kodam" : KODAM,
-        "Lanad" : LANAD,
-        "Ajendam": AJENDAM,
-	},
-	"Kekuatan TNI AU":{
-		"Pangkalan " : PANGKALAN,
-        "Bandara Militer": BandaraM,
-        "Bandara Sipil": BandaraS,
-        "Lanud": LANUD
-	}
-};
-// layerControl2 = L.control.layers(tni).addTo(map);
-
-// control layer lainnya
-// control layer lainnya
-// control layer lainnya
-
-
-// INIT MAP INIT MAP INIT MAP INIT MAP INIT MAP
-// INIT MAP INIT MAP INIT MAP INIT MAP INIT MAP
-// INIT MAP INIT MAP INIT MAP INIT MAP INIT MAP
-var map;
-var overlays, baseMaps, bsm, layerControl1, layerControl2;
-var configMap = {
-        latCenter : 6-(6-(-11))/2,
-        lonCenter : 95+(141-95)/2,
-        zoom :5,
-        mapUrl : 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        mapStyleId : 22677
-};
-
-// var minimal   = L.tileLayer(configMap.mapUrl,{styleId: configMap.mapStyleId});  
-
-map = new L.map('map', {
-  // drawControl: true,
-  center: [configMap.latCenter, configMap.lonCenter],
-  zoom: configMap.zoom,
-  layers: [standard],
-  maxZoom : 18,
-  minZoom : 3
-  // worldCopyJump : true
-});
-
-// ICON ICON ICON
-var ikanpari = L.icon({
-  iconUrl: 'aset/img/paripari.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var ikanbiru = L.icon({
-  iconUrl: 'aset/img/ikanbiru.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var ikanmerah = L.icon({
-  iconUrl: 'aset/img/ikanmerah.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var ikanoren = L.icon({
-  iconUrl: 'aset/img/ikanoren.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var ikanpink = L.icon({
-  iconUrl: 'aset/img/ikanpink.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var ikanhiu = L.icon({
-  iconUrl: 'aset/img/hiuhiu.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var ikanpaus = L.icon({
-  iconUrl: 'aset/img/pauspaus.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var kepitingicon = L.icon({
-  iconUrl: 'aset/img/kepiting.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var udangicon = L.icon({
-  iconUrl: 'aset/img/udangudang.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var cumiicon = L.icon({
-  iconUrl: 'aset/img/cumicumi.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var lobstericon = L.icon({
-  iconUrl: 'aset/img/lobterlobster.png',      
-  iconSize:     [40, 40], 
-  iconAnchor:   [20, 20], 
-});
-var gmpaIcon = L.icon({
-  iconUrl: 'aset/img/epic.gif',      
-  iconSize:     [50, 50], 
-  iconAnchor:   [25, 25], 
-});
-var aiscon = L.icon({
-  iconUrl: 'aset/img/v.png',      
-  iconSize:     [24, 24], 
-  iconAnchor:   [12, 12], 
-});
 
 
 // INIT IKAN INIT IKAN INIT IKAN INIT IKAN INIT IKAN 
@@ -243,9 +746,9 @@ var tuna= L.layerGroup([]), pari= L.layerGroup([]), hiu= L.layerGroup([]), cakal
 
 $.ajax({
   type: 'GET',        
-  url: 'aset/ikan.json',        
+  url: URLIKAN,        
   success:function(ikan){
-  	console.log(ikan);
+  	// console.log(ikan);
   	for(var i=0; i<ikan.length; i++){
   		if(ikan[i].ikan === "tuna"){
   			var mark = L.marker([ikan[i].koor.lat, ikan[i].koor.lon], {icon:ikanmerah})
@@ -448,21 +951,26 @@ var ikan = {
 	}
 };
 
-    
-// draw and edit control    
+
+//INIT DRAW AND EDIT CONTROL
+//INIT DRAW AND EDIT CONTROL
+//INIT DRAW AND EDIT CONTROL    
+    var drawnPolygon = L.featureGroup().addTo(map);
+    var drawnPolyline = L.featureGroup().addTo(map);
+    var drawnRectangle = L.featureGroup().addTo(map);
+    var drawnCircle = L.featureGroup().addTo(map);
+    var drawnMarker = L.featureGroup().addTo(map);
+    var drawnMarkerBulat = L.featureGroup().addTo(map);
     var drawnItems = L.featureGroup().addTo(map);
-    // L.control.layers(null, { 'drawlayer': drawnItems }, { position: 'topleft'}).addTo(map);
+    var drawnALL = [];
+    
     var ldraw = new L.Control.Draw({
         edit: {
             featureGroup: drawnItems,
+            // featureGroup: [drawnPolygon, drawnPolyline, drawnRectangle, drawnCircle, drawnMarker, drawnMarkerBulat],
             poly: {
                 allowIntersection: false  
-                // shapeOptions:{showMeasurements: true}
-                // selectedPathOptions:{showMeasurements: true}
-                // edit:{selectedPathOptions:{updateMeasurements: true}}
-                // showMeasurements: true
             }
-            // edit:{selectedPathOptions:{updateMeasurements: true}}
         },
         draw: {
             polygon: {
@@ -470,36 +978,6 @@ var ikan = {
                 shapeOptions:{showMeasurements: true},
                 showArea: true
             },
-            // polygonabu: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#808080",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonmerah: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#ff0000",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonbiru: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#0066ff",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonkuning: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#ffff00",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonhijau: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#00ff00",showMeasurements: true},
-            //     showArea: true
-            // },
-            // polygonungu: {
-            //     allowIntersection: false,
-            //     shapeOptions:{color: "#cc00cc",showMeasurements: true},
-            //     showArea: true
-            // },
             polyline: {
                 shapeOptions:{
                   showMeasurements: true
@@ -509,46 +987,6 @@ var ikan = {
                 showRadius: true,
                 shapeOptions:{showMeasurements: true}
             },
-            // markermerah: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconmerah.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
-            // markerhijau: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconhijau.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
-            // markerbiru: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconbiru.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
-            // markerungu: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconungu.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
-            // markerabu: {
-            //     icon: new L.icon({
-            //               iconUrl: 'aset/img/iconabu.png',
-            //               iconSize: [10, 10],
-            //               iconAnchor: [5, 5],
-            //               popupAnchor: [5,5]
-            //           })
-            // },
             circle: {
                 shapeOptions:{showMeasurements: true}
             }
@@ -558,392 +996,169 @@ var ikan = {
     
     map.on(L.Draw.Event.CREATED, function (event) {
         var layer = event.layer;
-        // drawnItems.bindPopup('hahahaha');
-        // console.log(event);
         myBindPopUp(layer);
-        
-        drawnItems.addLayer(layer); 
+        drawnItems.addLayer(layer);
+        if(event.layerType == 'polygon'){layer.jenis ="polygon"; drawnPolygon.addLayer(layer)}; 
+        if(event.layerType == 'rectangle'){layer.jenis ="rectangle"; drawnRectangle.addLayer(layer)}; 
+        if(event.layerType == 'polyline'){layer.jenis = "polyline"; drawnPolyline.addLayer(layer)}; 
+        if(event.layerType == 'circle'){layer.jenis="circle"; drawnCircle.addLayer(layer)}; 
+        if(event.layerType == 'marker'){layer.jenis="marker"; drawnMarker.addLayer(layer)}; 
+        if(event.layerType == 'markerbulat'){layer.jenis="markerbulat"; drawnMarkerBulat.addLayer(layer)}; 
+        drawnALL.push(event);
+        syncSidebar();
+        // console.log(drawnALL);
     });
+
+// tinggal manggil drawnALL buat di tabel kiri
+// iterasi[i].layerType = "polygon"
+// iterasi[i].layer._popup._content = "gopalgopel"
+
+var gambargambar = {
+  "Gambar - Gambar":{
+    "Polyline" : drawnPolyline,
+    "Polygon" : drawnPolygon,
+    "Rectangle" : drawnRectangle,
+    "Circle" : drawnCircle,
+    "Marker" : drawnMarker,
+    "MarBulat" : drawnMarkerBulat
+    // "SEMUA" : drawnItems
+  }
+};
+
+var layerControl5 = L.control.groupedLayers(null,gambargambar, {position:'topright'}).addTo(map);
 
 // window prompt, asking bindpopup!    
 function myBindPopUp(objek) {
-    var popup = prompt("Masukan deskripsi dari gambar / marker", "");
-    
-    if (popup != null) {
-        objek.bindPopup(popup);
+    var pop1 = prompt("Masukan JUDUL dari gambar / marker", "");
+    var pop2 = prompt("Masukan DESKRIPSI dari gambar / marker", "");
+    if ((pop1 != null)&&(pop2!= null)) {
+        objek.bindPopup("<table style='font-size:14px'><tr>"+
+                      "<td><b> "+pop1+"</b></td>"+
+                      "</tr></table></br><i>"+pop2+"</i>"
+                      );
+        objek.judul = pop1;
+        objek.desc = pop2;
     }
 }
 //window prompt, asking bindpopup!
 
-
-// menu easy button
-// var helloPopup = L.popup().setContent('munculin sesuatu');
-// L.easyButton('fa-tree', function(btn, map){
-//     helloPopup.setLatLng(map.getCenter()).openOn(map);
-// }).addTo(map);
-
-//menu custom button
-// L.control.custom({
-//     position: 'topright',
-//     content : //'<button type="button" class="btn btn-default">'+
-//               // '    <i class="fa fa-crosshairs"></i>'+
-//               // '</button>'+
-//               // '<button type="button" class="btn btn-info">'+
-//               // '    <i class="fa fa-compass"></i>'+
-//               // '</button>'+
-//               // '<button type="button" class="btn btn-primary">'+
-//               // '    <i class="fa fa-spinner fa-pulse fa-fw"></i>'+
-//               // '</button>'+
-//               // '<button type="button" class="btn btn-danger">'+
-//               // '    <i class="fa fa-times"></i>'+
-//               // '</button>'+
-//               // '<a href="backend.html">'+
-//               '<button type="button" class="btn btn-success">'+
-//               '    <i class="fa fa-gears"></i>'+
-//               '    Menu Pengaturan! '+
-//               // '</a>'+
-//               // '    <i class="fa fa-check"></i>'+
-//               // '</button>'+
-//               // '<button type="button" class="btn btn-warning">'+
-//               // '    <i class="fa fa-exclamation-triangle"></i>'+
-//               '</button>',
-//     // classes : 'btn-group-vertical btn-group-sm',
-//     classes : 'btn-group btn-group-sm',
-//     style   :
-//     {
-//         // margin: '10px',
-//         // padding: '0px 0 0 0',
-//         // marginLeft: '-90px',
-//         // marginTop: '10px',
-//         cursor: 'pointer',
-//         // position: 'absolute',
-    
-//     },
-//     datas   :
-//     {
-//         'foo': 'bar',
-//     },
-//     events:
-//     {
-//         click: function(data)
-//         {
-//             console.log('wrapper div element clicked');
-//             console.log(data);
-//             window.location.href = "backend.html";
-//         },
-//         dblclick: function(data)
-//         {
-//             console.log('wrapper div element dblclicked');
-//             console.log(data);
-//         },
-//         contextmenu: function(data)
-//         {
-//             console.log('wrapper div element contextmenu');
-//             console.log(data);
-//         },
-//     }
-// })
-// .addTo(map);
-
-// LEAFLET search
-map.addControl( new L.Control.Search({
-    url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
-    jsonpParam: 'json_callback',
-    propertyName: 'display_name',
-    propertyLoc: ['lat','lon'],
-    marker: L.circleMarker([0,0],{radius:20}),
-    // autoCollapse: true,
-    autoType: false,
-    position: 'topright',
-    collapsed: false,
-    // autoCollapse: false,
-    // hideMarkerOnCollapse: true,
-    minLength: 2
-  }) );
-
-// L.polyline([
-//         [57.67, 11.85],
-//         [57.677, 11.86],
-//         [57.68, 11.85],
-//         [57.69, 11.86],
-//     ], {showMeasurements: true, measurementOptions: {imperial:true}})
-//     .addTo(map);
-
-
-baseMaps = {
-  "Navtonic": navtoniv,
-  "Black": CartoDB_DarkMatter,
-  "OSM Standard": standard,
-  "Gray": gray, 
-  "Streets": streets,
-  "Topo": topo,
-  "NatGeo": nationalgeo,
-  "Ocean": ocean,
-  "DarkGry": darkgray,
-  "Imagy": image,
-  "Shade": shade,
-  "Terain": terain,
-  "USA topo": usa,
-  "TNI AD":topoindo
-  // "Mid": mid,
-  // "Spring" : spring,
-  // "News": news
-};
-
-bsm = {
-  // "Black": CartoDB_DarkMatter,
-  "Open Street": standard,
-  // "Gray": gray, 
-  "Streets": streets,
-  "Topo": topo,
-  "NatGeo": nationalgeo,
-  "Ocean": ocean,
-  // "DarkGry": darkgray,
-  "Imagy": image,
-  "Shade": shade,
-  // "Terain": terain
-  // "USA topo": usa
-  // "Mid": mid,
-  // "Spring" : spring,
-  // "News": news
-};
-        
-// CUACA GEMPA CUACA GEMPA CUACA GEMPA CUACA GEMPA
-// CUACA GEMPA CUACA GEMPA CUACA GEMPA CUACA GEMPA
-// CUACA GEMPA CUACA GEMPA CUACA GEMPA CUACA GEMPA
-var listGempa = [];
-var gempa = L.layerGroup(listGempa);
-var angin = L.layerGroup();
-var gelombang = L.layerGroup();
-var awan = L.layerGroup();
-var hujan = L.layerGroup();
-
-var bas = "http://localhost/getcuaca/bin/hasil/"; 
-// var bas = "http://192.168.1.118/getcuaca/bin/hasil/"; 
-var bmkg = bas+"gempaterkini.xml"; 
-// var bmkg = bas+"gempaauto.xml";
-var tgl,jam,lat,lon,mag,ked,wil,pot,cek7hr;
-var koor = [];
-
-$.ajax({
-  type: 'GET',        
-  url: bmkg,
-  dataType: "xml",
-  success:function(xml){
-    $(xml).find('Infogempa').each(function(){
-      $(this).find("gempa").each(function(){
-
-        info = $(this).text(); 
-        $(this).find("Tanggal").each(function(){
-          tgl = $(this).text();                   
-          var d = new Date();
-          d.setDate(d.getDate() - 7); // disini diset brp hari yg lalu, misal 7 hari yg lalu jadinya - 7
-          if (d - new Date(tgl) <= 0){cek7hr = true} else cek7hr = false;
-        });
-        $(this).find("Jam").each(function(){jam = $(this).text()});
-        $(this).find("point").each(function(){
-          $(this).find("coordinates").each(function(){koor = $(this).text().split(",")}); 
-        });
-        $(this).find("Lintang").each(function(){lat = $(this).text()});
-        $(this).find("Bujur").each(function(){lon = $(this).text()});
-        $(this).find("Magnitude").each(function(){mag = $(this).text()});
-        $(this).find("Kedalaman").each(function(){ked = $(this).text()});
-        $(this).find("Wilayah").each(function(){wil = $(this).text()}); 
-        
-        // cek ini 2hr lalu ga?
-        if (cek7hr){
-          // bikin icon
-          var gmpa = L.marker([koor[1],koor[0]], {icon: gmpaIcon})
-            .bindTooltip("<table  style='font-size:10px'><tr>"+
-                          "<td>Tanggal </td><td>: "+tgl+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Jam </td><td>: "+jam+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Lintang </td><td>: "+lat+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Bujur </td><td>: "+lon+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Magnitude </td><td>: "+mag+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Kedalaman </td><td>: "+ked+"</td>"+
-                        "</tr><tr>"+
-                          "<td>Wilayah </td><td>: "+wil+"</td>"+
-                        "</tr></table>",
-                {opacity:0.8, sticky:true});
-          listGempa.push(gmpa);                   
-        }// end of cek (if)
-
-      });
-    });
-    gempa = L.layerGroup(listGempa);
-  }
-}); 
-
-  
-// INIT BATAS INIT BATAS INIT BATAS INIT BATAS
-// INIT BATAS INIT BATAS INIT BATAS INIT BATAS
-// INIT BATAS INIT BATAS INIT BATAS INIT BATAS
-var tik, terline1,terline2,terline3,terline4, pklline1,pklline2,pklline3, tmbline1,tmbline2,tmbline3,tmbline4,tmbline5, zeeline1,zeeline2,zeeline3,zeeline4,zeeline5,zeeline6;
-var teri, zee, tmbline, pklline, konline, stline;
-var urlbatasL = 'aset/batasline.json';  
-
-$.ajax({
-  type: 'GET',        
-  url: urlbatasL,        
-  success:function(response){
-    // console.log('batas',response);
-    var teritorialList1 =[]; var teritorialList2 =[]; var teritorialList3 =[]; var teritorialList4 =[];
-    var pangkalList1 = []; var pangkalList2 = []; var pangkalList3 = [];
-    var tambahanList1 = []; var tambahanList2 = []; var tambahanList3 = []; var tambahanList4 = []; var tambahanList5 = [];
-    var zeeList1 = []; var zeeList2 = []; var zeeList3 = []; var zeeList4 = []; var zeeList5 = []; var zeeList6 = [];
-    var kontinenList = []; var stList = [];         
-
-    for (i = 0; i < response.features.length; i++) { 
-      for (ii = 0; ii < response.features[i].latlon.length; ii++) { 
-        if (response.features[i].tag == "ter1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList1.push(tik); }
-        if (response.features[i].tag == "ter2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList2.push(tik); }
-        if (response.features[i].tag == "ter3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList3.push(tik); }
-        if (response.features[i].tag == "ter4"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); teritorialList4.push(tik); }
-
-        if (response.features[i].tag == "pkl1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); pangkalList1.push(tik); }
-        if (response.features[i].tag == "pkl2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); pangkalList2.push(tik); }
-        if (response.features[i].tag == "pkl3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); pangkalList3.push(tik); }
-
-        if (response.features[i].tag == "tmb1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList1.push(tik); }
-        if (response.features[i].tag == "tmb2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList2.push(tik); }
-        if (response.features[i].tag == "tmb3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList3.push(tik); }
-        if (response.features[i].tag == "tmb4"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList4.push(tik); }
-        if (response.features[i].tag == "tmb5"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); tambahanList5.push(tik); }
-
-        if (response.features[i].tag == "zee1"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList1.push(tik); }
-        if (response.features[i].tag == "zee2"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList2.push(tik); }
-        if (response.features[i].tag == "zee3"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList3.push(tik); }
-        if (response.features[i].tag == "zee4"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList4.push(tik); }
-        if (response.features[i].tag == "zee5"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList5.push(tik); }
-        if (response.features[i].tag == "zee6"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); zeeList6.push(tik); }
-
-        if (response.features[i].tag == "kon"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); kontinenList.push(tik); }
-        if (response.features[i].tag == "197"){ tik = new L.LatLng(response.features[i].latlon[ii][1], response.features[i].latlon[ii][0]); stList.push(tik); }         
+function syncSidebar() {
+  /* Empty sidebar features */
+  $("#feature-list tbody").empty();
+  // $("#feature-lost tbody").empty();
+  /* POLYLINE */ 
+  drawnPolyline.eachLayer(function (layer) {
+    // if (map.hasLayer(drawnPolyline)) {
+      console.log(layer);
+      if (map.getBounds().contains(layer.getBounds())) {
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src="aset/img/polyline.png" width="20" height="20""></td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>"+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
-    }
-    
-    terline1 = new L.polyline(teritorialList1, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
-    terline2 = new L.polyline(teritorialList2, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
-    terline3 = new L.polyline(teritorialList3, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
-    terline4 = new L.polyline(teritorialList4, {color: "#7700ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('batas teritorial', { noHide: true }); //.addTo(map);
+    // }
+  });
+  /* POLYGON */
+  drawnPolygon.eachLayer(function (layer) {
+    // if (map.hasLayer(drawnPolygon)) {
+      // console.log(layer);
+      if (map.getBounds().contains(layer.getBounds())) {
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src="aset/img/polygon.png" width="20" height="20""></td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>" + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      }
+    // }
+  });
+  /* RECTANGLE */
+  drawnRectangle.eachLayer(function (layer) {
+    // if (map.hasLayer(drawnRectangle)) {
+      // console.log(layer);
+      if (map.getBounds().contains(layer.getBounds())) {
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src="aset/img/kotak.png" width="20" height="20""></td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>" + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      }
+    // }
+  });
+  /* CIRCLE */
+  drawnCircle.eachLayer(function (layer) {
+    // if (map.hasLayer(drawnCircle)) {
+      // console.log(layer);
+      if (map.getBounds().contains(layer.getBounds())) {
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src="aset/img/lingkaran.png" width="20" height="20""></td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>" + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      }
+    // }
+  });
+  /* MARKER */
+  drawnMarker.eachLayer(function (layer) {
+    // if (map.hasLayer(drawnMarker)) {
+      console.log(layer);
+      if (map.getBounds().contains(layer.getLatLng())) {
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src='+layer.options.icon.options.iconUrl+' width="13" height="20""></td><td class="feature-name">' + layer.judul + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      }
+    // }
+  });
+  /* MARKERBULAT */
+  drawnMarkerBulat.eachLayer(function (layer) {
+    // if (map.hasLayer(drawnMarkerBulat)) {
+      console.log(layer);
+      if (map.getBounds().contains(layer.getLatLng())) {
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src='+layer.options.icon.options.iconUrl+' width="20" height="20""></td><td class="feature-name">' + layer.judul + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      }
+    // }
+  });
+}
 
-    pklline1 = new L.polyline(pangkalList1, {color: 'red', weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('garis pangkal', { noHide: true }); //.addTo(map);
-    pklline2 = new L.polyline(pangkalList2, {color: 'red', weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('garis pangkal', { noHide: true }); //.addTo(map);
-    pklline3 = new L.polyline(pangkalList3, {color: 'red', weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('garis pangkal', { noHide: true }); //.addTo(map);
+// SAVE FILE GEOJSON LOKAL SAVE FILE GEOJSON LOKAL
+// SAVE FILE GEOJSON LOKAL SAVE FILE GEOJSON LOKAL
+function download(strData, strFileName, strMimeType) {
+    var D = document,
+        A = arguments,
+        a = D.createElement("a"),
+        d = A[0],
+        n = A[1],
+        t = A[2] || "text/plain";
 
-    tmbline1 = new L.polyline(tambahanList1, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-    tmbline2 = new L.polyline(tambahanList2, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-    tmbline3 = new L.polyline(tambahanList3, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-    tmbline4 = new L.polyline(tambahanList4, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-    tmbline5 = new L.polyline(tambahanList5, {color: "#DBA901", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('zona tambahan', { noHide: true }); //.addTo(map);
-
-    zeeline1 = new L.polyline(zeeList1, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline2 = new L.polyline(zeeList2, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline3 = new L.polyline(zeeList3, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline4 = new L.polyline(zeeList4, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline5 = new L.polyline(zeeList5, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-    zeeline6 = new L.polyline(zeeList6, {color: "#088A08", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('ZEE', { noHide: true }); //.addTo(map);
-
-    konline = new L.polyline(kontinenList, {color: "#2E9AFE", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('landas kontinent', { noHide: true }); //.addTo(map);
-    stline = new L.polyline(stList, {color: "#0901ff", weight: 2, opacity: 1, smoothFactor: 1, dashArray: '3, 4'}).bindTooltip('perjanjian 1997', { noHide: true }); //.addTo(map);
-
-    teri = L.layerGroup([terline1, terline2, terline3, terline4]);
-    zee = L.layerGroup([zeeline1, zeeline2, zeeline3, zeeline4, zeeline5, zeeline6]);
-    tmbline = L.layerGroup([tmbline1, tmbline2, tmbline3, tmbline4, tmbline5]);
-    pklline = L.layerGroup([pklline1, pklline2, pklline3]);
-    
-    //masukin semua overlays disini
-    overlays = {
-        // "Batas Wilayah":{
-        	// "<font color='#2E9AFE'>Landas Kontinent</font>": konline, 
-        	// "<font color='#0901ff'>Perjanjian 1997</font>": stline, 
-        	"<font color='red'>Garis Batas</font>": pklline,
-	        "<font color='#7700ff'>Teritorial</font>": teri,
-	        "<font color='#DBA901'>Zona Plus</font>": tmbline, 
-	        "<font color='#088A08'>ZEE</font><br><br><b>Peta Tambahan :</b>": zee,
-        // },
-        // "Peta Tambahan":{
-        	"Dishidros" : dishidros,
-	        // "DishidrosT" : dishidrost,
-	        "AIS": ais,
-	        "KKP wilayah" : kkp,
-	        "Hulu Migas" : migas,
-	        "Rapingla" : rapingla,
-	        "Pasut <br><br><b>Cuaca & Gempa:</b>" : pasut,
-        // },
-        // "Cuaca & Gempa":{
-        	"Gempa 7hr": gempa,
-	        "Angin": angin,
-	        "Gelombang": gelombang,
-	        "Awan": awan,
-	        "Hujan": hujan
-        // }
-    };
-
-    layerControl1 = L.control.layers(baseMaps, overlays).addTo(map);
-    layerControl2 = L.control.groupedLayers(null,tni, {position:'topright'}).addTo(map);
-    var layerControl3 = L.control.groupedLayers(null,ikan, {position:'topright'}).addTo(map);
-  },
-  error: function() {
-    console.log("Error json request"); 
-    window.confirm("Data batas gagal diload");
-  }
-}); 
-
-// LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN
-// LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN
-// LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN LAIN
+    //build download link:
+    a.href = "data:" + strMimeType + "charset=utf-8," + escape(strData);
+    if (window.MSBlobBuilder) { // IE10
+        var bb = new MSBlobBuilder();
+        bb.append(strData);
+        return navigator.msSaveBlob(bb, strFileName);
+    } /* end if(window.MSBlobBuilder) */
+    if ('download' in a) { //FF20, CH19
+        a.setAttribute("download", n);
+        a.innerHTML = "downloading...";
+        D.body.appendChild(a);
+        setTimeout(function() {
+            var e = D.createEvent("MouseEvents");
+            e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            a.dispatchEvent(e);
+            D.body.removeChild(a);
+        }, 66);
+        return true;
+    }; /* end if('download' in a) */
+    //do iframe dataURL download: (older W3)
+    var f = D.createElement("iframe");
+    D.body.appendChild(f);
+    f.src = "data:" + (A[2] ? A[2] : "application/octet-stream") + (window.btoa ? ";base64" : "") + "," + (window.btoa ? window.btoa : escape)(strData);
+    setTimeout(function() {
+        D.body.removeChild(f);
+    }, 333);
+    return true;
+}
 
 
-var attrib = new L.Control.Attribution;
-map.addControl(attrib); 
-attrib.setPrefix('Koordinat : ');
-map.on('mousemove', function(e) {
-  attrib.setPrefix('Koordinat : '+e.latlng.lat+", "+e.latlng.lng+'. Zoom:'+map.getZoom()+'. Created by Gopal, 2017');
+map.on("moveend", function (e) {
+  syncSidebar();
 });
 
-// var locateControl = L.control.locate({
-//   position: "bottomright",
-//   drawCircle: true,
-//   follow: true,
-//   setView: true,
-//   keepCurrentZoomLevel: true,
-//   markerStyle: {
-//     weight: 1,
-//     opacity: 0.8,
-//     fillOpacity: 0.8
-//   },
-//   circleStyle: {
-//     weight: 1,
-//     clickable: false
-//   },
-//   icon: "fa fa-location-arrow",
-//   metric: false,
-//   strings: {
-//     title: "My location",
-//     popup: "You are within {distance} {unit} from this point",
-//     outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
-//   },
-//   locateOptions: {
-//     maxZoom: 18,
-//     watch: true,
-//     enableHighAccuracy: true,
-//     maximumAge: 10000,
-//     timeout: 10000
-//   }
-// }).addTo(map);
+
+
+
+
+
 
 var EDITSTAT, DRAWSTAT;
 map.on('draw:editstart', function(e) {
-       EDITSTAT = true;       
+  EDITSTAT = true;       
 });
 map.on('draw:editstop', function() {
   EDITSTAT = false;
+  syncSidebar();
 });
 map.on('draw:drawstart', function(e) {
   var type = e.layerType;
@@ -953,106 +1168,79 @@ map.on('draw:drawstart', function(e) {
 map.on('draw:drawstop', function() {
   DRAWSTAT = false;
 });
-// calculate_bearing(awal,new L.LatLng(lat,lon));
-
-// function calculate_bearing(start_pos,stop_pos){
-//   var lat1 = Geo.parseDMS(start_pos.lat);
-//   var lon1 = Geo.parseDMS(start_pos.lng);
-//   var lat2 = Geo.parseDMS(stop_pos.lat);
-//   var lon2 = Geo.parseDMS(stop_pos.lng);
-//   var p1 = new LatLon(lat1, lon1);
-//   var p2 = new LatLon(lat2, lon2);
-//   lat1=null;lat2=null;lon1=null;lon2=null;
-//   return Geo.toBrng(p1.bearingTo(p2),'dm');
-//   p1=null;p2=null;
-// }
-
-
-// L.control.scale().addTo(map);
-// L.control.betterscale().addTo(map);
-
-map.addControl(new L.Control.ScaleNautic({
-                metric: true,
-                imperial: true,
-                nautic: true
-            }));
-
-
-// adding test data
-   // var geojson1 = L.geoJson(JSON.parse(data1),opts1).addTo(map);
-   // var geojson2= L.geoJson(JSON.parse(data2),opts2).addTo(map);
-
-//     .addTo(map);
+map.on('draw:edited', function(e) {
+  console.log("edited");
+  var layers = e.layers;
+  layers.eachLayer(function (layer) {
+     //do whatever you want; most likely save back to db
+      console.log(layer);
+  });
+  syncSidebar();
+});
+map.on('draw:deleted', function(e) {
+  console.log("deleted");
+  var layers = e.layers;
+  layers.eachLayer(function (layer) {
+     //do whatever you want; most likely save back to db
+      console.log(layer);
+      drawnItems.removeLayer(layer);
+      if(layer.jenis == 'polygon'){drawnPolygon.removeLayer(layer)}; 
+      if(layer.jenis == 'rectangle'){drawnRectangle.removeLayer(layer)}; 
+      if(layer.jenis == 'polyline'){drawnPolyline.removeLayer(layer)}; 
+      if(layer.jenis == 'circle'){drawnCircle.removeLayer(layer)}; 
+      if(layer.jenis == 'marker'){drawnMarker.removeLayer(layer)}; 
+      if(layer.jenis == 'markerbulat'){drawnMarkerBulat.removeLayer(layer)};   
+  });
+  syncSidebar();
+});
 
 
-   // setting options 
-   // var options = {geodesic: true};
-
-   //input parameter is Array of layers
-   // var layers = [polygon,bulat];
-
-   // initialize control
-   // var control = L.Control.measureAreaControl(options, layers, {collapsed:false}).addTo(map);
-
-
-
-// var polygon = L.polygon([
-//         [48.10804729138659, 17.106292247772217],
-//         [48.10853443729303, 17.106292247772217],
-//         [48.10853443729303, 17.1071720123291],
-//         [48.10804729138659, 17.1071720123291],
-//         [48.10804729138659, 17.106292247772217]
-//     ]).addTo(map);
-//     control.addLayer(polygon);
-   // polygon.enableEdit();
-        // map.on('editable:vertex:drag editable:vertex:deleted', polygon.updateMeasurements, polygon);
-
-
-// L.polyline([
-//         [57.67, 11.85],
-//         [57.677, 11.86],
-//         [57.68, 11.85],
-//         [57.69, 11.86],
-//     ], {showMeasurements: true, measurementOptions: {imperial:true}})
-//     .addTo(map);
-
-// L.circle([57.694, 11.94], 1000, {showMeasurements: true})
-//     .addTo(map);
-
-// L.circle([57.705, 11.92], 750, {showMeasurements: true, measurementOptions: {imperial:true}})
-//     .addTo(map);
-
-// polygon.enableEdit();
-// map.on('editable:vertex:drag editable:vertex:deleted', polygon.updateMeasurements, polygon);
-
-
-
-// var drawnItems = baseLayers.overlays.draw;
-//         map.on('draw:created', function (e) {
-//           var layer = e.layer;
-//           drawnItems.addLayer(layer);
-//           console.log(JSON.stringify(layer.toGeoJSON()));
-//         });
-
-
-//pke default map esri gray (ga detil)
-  // var map = L.map('map').setView([37.71, -99.88], 4);
-  // L.esri.basemapLayer('Gray').addTo(map);
-
-//klo mau overlay lgsg dgn map lain. opacitynya aja diatur  
-  // L.esri.dynamicMapLayer({
-  //   url: 'http://hdc.dishidros.go.id/arcgis/rest/services/enc_indonesia/MapServer/exts/Maritime%20Chart%20Service/MapServer',
-  //   opacity: 0.8,
-  //   f:'image'
-  // }).addTo(map);
-
-$("#sidebar-hide-btn").click(function() {
-	// console.log("aaaaaaaa");
-  animateSidebar();
+// RIGHTBAR
+$("#selectloc").click(function(e) {
+  // animateRightbar();
+  console.log(e);
+  return false;
+});
+$("#kirim").click(function() {
+  // animateRightbar();
+  console.log(kirim);
+  return false;
+});
+$("#bersih").click(function() {
+  // animateRightbar();
+  console.log(bersih);
   return false;
 });
 
-$("#list-btn").click(function() {
+// LEFTBAR
+$("#download-btn").click(function() {
+  console.log(drawnItems);
+  var namafile = "gambar.geojson";
+  var print = JSON.stringify(drawnItems.toGeoJSON())
+  var popup = prompt("Tulis nama filenya. extension jangan diubah", ".geojson");  
+    if (popup != null) {
+        namafile = popup;
+    }
+  download(print, namafile, 'text/plain');
+  return false;
+});
+$("#sidebar-legend-btn").click(function() {
+	animateSidebar();
+  // animateRightbar();
+  return false;
+});
+
+$("#sidebar-form-btn").click(function() {
+  // animateSidebar();
+  animateRightbar();
+  return false;
+});
+
+$("#tutupR").click(function() {
+  animateRightbar();
+  return false;
+});
+$("#tutupS").click(function() {
   animateSidebar();
   return false;
 });
@@ -1072,4 +1260,54 @@ function animateSidebar() {
     map.invalidateSize();
   });
 }
-animateSidebar();
+
+function animateRightbar(){
+  $("#rightbar").animate({
+    width: "toggle"
+  }, 350, function() {
+    map.invalidateSize();
+  });
+}
+
+function IsJsonString(str) {try {JSON.parse(str)}catch (e) {return false}return true}
+
+
+// animateSidebar();
+// animateRightbar();
+
+
+
+
+// PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR
+// PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR
+// PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR PR
+// .ngesave gambar ke DB
+
+// .nambahin properties gambar2 pas mau ngesave ke file/db:
+// ..warna garis
+// ..ketebalan garis
+// ..popup data
+// ..luas wilayah
+// ..iconUrl
+// ..showMeasurements
+// ..
+// ..
+
+// .
+// .gambar yg marker ama marker bulet warnanya ubah2 sendiri terus
+// .dr list tabel di kiri blm bisa filter, pke search dr bootsrap tabel
+// .dr list tabel di kiri pas diklik datanya harusnya menuju ke objek
+// .
+// .layer control di kanan terlalu rame,, banyak yg harusnya disatuin
+// .init ikan blm dibikin
+// .init gambar jg blm dibikin, masih on floor
+// .
+// .
+// .backend (halaman admin) masih blm disentuh
+// .autentikasi / login belum ada
+// .
+// .
+// .
+// .
+// .
+// .
