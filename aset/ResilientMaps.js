@@ -4,6 +4,8 @@
 // Email              : 085659360489 
 // Lama Pengerjaan    : 2017-2018
 
+// init include html syntax from index.html
+includeHTML();
 
 // GLOBAL VARIABLE
 var map; 
@@ -13,6 +15,12 @@ var tik, terline1,terline2,terline3,terline4, pklline1,pklline2,pklline3, tmblin
 var teri, zee, tmbline, pklline, konline, stline, tk1, tk2;
 var gempa,tekanan,awan,suhu,hujan;
 var ikanpari,ikanbiru,ikanmerah,ikanoren,ikanpink,ikanhiu,ikanpaus,kepitingicon,udangicon,cumiicon,lobstericon,gmpaIcon,aiscon,buletabu,buletdefault,bulethijau,bulethitam,buletkuning,buletmerah,buletputih,bulettransp,buletungu;
+var LOCATIONSTAT = false;
+var EDITSTAT, DRAWSTAT;
+var BUFFERFORM = {}; 
+var BUFFERORGorg = {};
+var BUFFERORG = [];
+
 
 //CONFIG IP AJAX
 var URLAPI        = 'http://192.168.1.241:9099/api/';
@@ -1051,7 +1059,7 @@ function syncSidebar() {
     // if (map.hasLayer(drawnPolyline)) {
       console.log(layer);
       if (map.getBounds().contains(layer.getBounds())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src="aset/img/polyline.png" width="20" height="20""></td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>"+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="text-align: center; vertical-align: middle;"><img src="aset/img/polyline.png" width="20" height="20""></td><td style="vertical-align: middle;" class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>"+'</td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.desc+"</font>"+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     // }
   });
@@ -1060,7 +1068,7 @@ function syncSidebar() {
     // if (map.hasLayer(drawnPolygon)) {
       // console.log(layer);
       if (map.getBounds().contains(layer.getBounds())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src="aset/img/polygon.png" width="20" height="20""></td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>" + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="text-align: center; vertical-align: middle;"><img src="aset/img/polygon.png" width="20" height="20""></td><td style="vertical-align: middle;" class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>" + '</td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.desc+"</font>"+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     // }
   });
@@ -1069,7 +1077,7 @@ function syncSidebar() {
     // if (map.hasLayer(drawnRectangle)) {
       // console.log(layer);
       if (map.getBounds().contains(layer.getBounds())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src="aset/img/kotak.png" width="20" height="20""></td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>" + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="text-align: center; vertical-align: middle;"><img src="aset/img/kotak.png" width="20" height="20""></td><td style="vertical-align: middle;" class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>" + '</td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.desc+"</font>"+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     // }
   });
@@ -1078,7 +1086,7 @@ function syncSidebar() {
     // if (map.hasLayer(drawnCircle)) {
       // console.log(layer);
       if (map.getBounds().contains(layer.getBounds())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src="aset/img/lingkaran.png" width="20" height="20""></td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>" + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="text-align: center; vertical-align: middle;"><img src="aset/img/lingkaran.png" width="20" height="20""></td><td style="vertical-align: middle;" class="feature-name">' + "<font color="+layer.options.color+">"+layer.judul+"</font>" + '</td><td class="feature-name">' + "<font color="+layer.options.color+">"+layer.desc+"</font>"+'</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     // }
   });
@@ -1087,7 +1095,7 @@ function syncSidebar() {
     // if (map.hasLayer(drawnMarker)) {
       console.log(layer);
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src='+layer.options.icon.options.iconUrl+' width="13" height="20""></td><td class="feature-name">' + layer.judul + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="text-align: center; vertical-align: middle;"><img src='+layer.options.icon.options.iconUrl+' width="13" height="20""></td><td style="vertical-align: middle;" class="feature-name">' + layer.judul + '</td><td class="feature-name">' + layer.desc + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     // }
   });
@@ -1096,7 +1104,7 @@ function syncSidebar() {
     // if (map.hasLayer(drawnMarkerBulat)) {
       console.log(layer);
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="vertical-align: middle;"><img src='+layer.options.icon.options.iconUrl+' width="20" height="20""></td><td class="feature-name">' + layer.judul + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td style="text-align: center; vertical-align: middle;"><img src='+layer.options.icon.options.iconUrl+' width="20" height="20""></td><td style="vertical-align: middle;" class="feature-name">' + layer.judul + '</td><td class="feature-name">' + layer.desc + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     // }
   });
@@ -1152,7 +1160,6 @@ map.on("moveend", function (e) {
 
 
 
-var EDITSTAT, DRAWSTAT;
 map.on('draw:editstart', function(e) {
   EDITSTAT = true;       
 });
@@ -1196,21 +1203,131 @@ map.on('draw:deleted', function(e) {
 
 
 // RIGHTBAR
-$("#selectloc").click(function(e) {
-  // animateRightbar();
-  console.log(e);
+$("#formselectloc").click(function(e) {
+  LOCATIONSTAT = !LOCATIONSTAT;
   return false;
 });
-$("#kirim").click(function() {
-  // animateRightbar();
-  console.log(kirim);
+
+map.on('click', function(e) {
+  if(LOCATIONSTAT){
+    // alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
+    var lat = document.getElementById("formlat");
+    var lon = document.getElementById("formlon"); 
+    lat.value = e.latlng.lat;
+    lon.value = e.latlng.lng;
+    LOCATIONSTAT = false;
+  }
+});
+
+$("#formkirim").click(function() {
+  BUFFERFORM.judul = document.getElementById("formjudul").value;
+  BUFFERFORM.kategori = document.getElementById("formkategori").value;
+  BUFFERFORM.tingkat = document.getElementById("formtingkat").value;
+  BUFFERFORM.tanggal = document.getElementById("formtanggal").value;
+  BUFFERFORM.lat = document.getElementById("formlat").value;
+  BUFFERFORM.lon = document.getElementById("formlon").value;
+  BUFFERFORM.lokasi = document.getElementById("formlokasi").value;
+  BUFFERFORM.isi = document.getElementById("formisi").value;
+  BUFFERFORM.foto1 = document.getElementById("formfotokjadian1").value.slice(12);
+  BUFFERFORM.foto2 = document.getElementById("formfotokjadian2").value.slice(12);
+  BUFFERFORM.orang = BUFFERORG;
+  
+  // kirim k API & upload foto 
+  console.log(BUFFERFORM);
+  $.post(URLAPI+"laporan", BUFFERFORM, function(result){
+        // console.log(result);
+        alert(result.message);
+  });
+  
+  bebersihform();
   return false;
 });
-$("#bersih").click(function() {
-  // animateRightbar();
-  console.log(bersih);
+$("#formbersih").click(function() {
+  bebersihform();
   return false;
 });
+$("#formorgkirim").click(function() {
+  BUFFERORGorg.nama = document.getElementById("formorgnama").value; 
+  BUFFERORGorg.umur = document.getElementById("formorgumur").value;
+  BUFFERORGorg.sebagai = document.getElementById("formorgsebagai").value;
+  BUFFERORGorg.suku = document.getElementById("formorgsuku").value;
+  BUFFERORGorg.agama = document.getElementById("formorgagama").value;
+  BUFFERORGorg.alamat = document.getElementById("formorgalamat").value;
+  BUFFERORGorg.fotoorg1 = document.getElementById("formorgfoto1").value.slice(12);
+  BUFFERORGorg.fotoorg2 = document.getElementById("formorgfoto2").value.slice(12);
+  BUFFERORGorg.fotoorg3 = document.getElementById("formorgfoto3").value.slice(12);
+  
+  BUFFERORG.push(BUFFERORGorg);
+
+  // upload foto 
+  console.log(BUFFERORG);
+  console.log(BUFFERORGorg);
+
+  $("#formtabelorg tbody").append(
+    '<tr>'+
+      '<td>'+document.getElementById("formorgnama").value+'</td>'+
+      '<td>'+document.getElementById("formorgumur").value+'</td>'+
+      '<td>'+document.getElementById("formorgsebagai").value+'</td>'+
+      '<td>'+document.getElementById("formorgsuku").value+'</td>'+
+      '<td>'+document.getElementById("formorgagama").value+'</td>'+
+      '<td>'+document.getElementById("formorgalamat").value+'</td>'+
+      '<td><a href><i class="fa fa-file"></i></a></td>'+
+    '</tr>');
+  bebersihorg();
+
+  BUFFERORGorg = {};
+  return false;
+});
+$("#formorgbersih").click(function() {
+  bebersihorg();
+  return false;
+});
+
+function bebersihorg(){
+  document.getElementById("formorgnama").value = "";
+  document.getElementById("formorgumur").value = "";
+  document.getElementById("formorgsebagai").value = "";
+  document.getElementById("formorgsuku").value = "";
+  document.getElementById("formorgagama").value = "";
+  document.getElementById("formorgalamat").value = "";
+  document.getElementById("formorgfoto1").value = "";
+  document.getElementById("formorgfoto2").value = "";
+  document.getElementById("formorgfoto3").value = "";
+}
+function bebersihform(){
+  document.getElementById("formjudul").value = "";
+  document.getElementById("formkategori").value = "";
+  document.getElementById("formtingkat").value = "";
+  document.getElementById("formtanggal").value = "";
+  document.getElementById("formlat").value = "";
+  document.getElementById("formlon").value = "";
+  document.getElementById("formlokasi").value = "";
+  document.getElementById("formisi").value = "";
+  document.getElementById("formfotokjadian1").value = "";
+  document.getElementById("formfotokjadian2").value = "";
+  BUFFERORG = [];
+  $("#formtabelorg tbody").empty();
+}
+
+INITTABELLAPORAN();
+function INITTABELLAPORAN(){
+  $.get(URLAPI+"laporan", function(data, status){
+        console.log(data);
+        // alert("Data: " + data + "\nStatus: " + status);
+        for(var i=0; i<data.data.length; i++){
+            $("#tabellap tbody").append(
+            '<tr>'+
+              '<td>'+data.data[i].judul +'</td>'+
+              '<td>'+data.data[i].kategori +'</td>'+
+              '<td>'+data.data[i].tanggal +'</td>'+
+              '<td>'+data.data[i].lokasi +'</td>'+
+              '<td>'+data.data[i].isi +'</td>'+
+              '<td><a href><i class="fa fa-user"></i></a></td><td><a href><i class="fa fa-photo"></i></a></td>'+
+            '</tr>');
+        }
+    });
+}
+  
 
 // LEFTBAR
 $("#download-btn").click(function() {
